@@ -1,0 +1,187 @@
+@import url("https://fonts.googleapis.com/css?family=Muli&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Quicksand&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+}
+/************* Text ***********/
+h5 {
+  font-family: Lato;
+  font-size: 15px;
+  font-weight
+}
+
+li {
+  list-style: none;
+}
+
+span {
+  font-family: Lato;
+
+  font-weight: 700;
+}
+/************** Text Fin ********************/
+
+/************** Header ********************/
+header {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.logo {
+  /* position: absolute; */
+  width: 268px;
+  height: 93px;
+}
+
+/************** Header Fin ********************/
+
+/************** Main *****************/
+main {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.form-group {
+  display: flex;
+  margin-left: 115px;
+  margin-top: 20px;
+  border-radius: 5px;
+  width: 87%;
+  height: 69px;
+}
+
+.form-control {
+  background: #e7e7e7;
+}
+
+#filters {
+    margin-left: 105px;
+}
+
+.badge {
+    width: 107px;
+    height: 37px;
+    border-radius: 5px;
+    font-size: 12px;
+    padding: 10px;
+}
+p {
+    margin-left: 10px;
+}
+.badge-primary, .btn-primary {
+    background: #3282F7;
+}
+.badge-secondary, .btn-secondary {
+    background: #68D9A4;
+}
+.badge-sucess, .btn-sucess {
+    background: #ED6454;
+}
+#dropdown-filters {
+  display: flex;
+  margin-left: 115px;
+  margin-top: 30px;
+}
+
+button {
+  width: 170px;
+  height: 69px;
+}
+.dropdown {
+  margin-right: 20px;
+}
+#cards {
+  margin-top: 30px;
+  width: 90%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+
+.card {
+  width: 27%;
+  height: 364px;
+  margin-bottom: 60px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+ 
+}
+li {
+  font-size: 12px;
+  font-weight: 400;
+}
+.card-img-top {
+  background: #c7bebe;
+  height: 178px;
+}
+.card-body {
+  background: #e7e7e7;
+  display: flex;
+  align-items: center;
+  /* flex-direction: column; */
+  flex-direction: row;
+  flex-wrap: wrap;
+  height: 178px;
+  
+}
+
+.card-title {
+  width: 70%;
+}
+
+.oi-clock {
+  position: absolute;
+  left: 80%;
+  right: 5.26%;
+  top: 56%;
+  bottom: 26.67%;
+  font-weight: 700;
+  font-size: 13px;
+  font-weight: 700;
+}
+.ingredients-list {
+    font-family: Lato;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 15px;
+
+}
+.description {
+  position: absolute;
+  margin-top: 15px;
+  font-size: 12px;
+  font-family: Roboto;
+  font-weight: 400;
+  width: 171px;
+  height: 109px;
+  left: 50.26%;
+  right: 4.74%;
+  top: 65%;
+  font-size: 12px;
+  line-height: 100%;
+}
+
+/* rows
+div.dropdown-multicol{
+  width: 30em;
+}
+div.dropdown-menu>a.dropdown-item{
+  display:inline-block;
+  width: 32%;
+} */
+
+/* Columns  */
+
+div.dropdown-expended{
+  width: 30em;
+}
+div.dropdown-expended>div.dropdown-col{
+  display:inline-block;
+  width: 32%;
+}
+

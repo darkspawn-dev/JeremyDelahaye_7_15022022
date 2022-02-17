@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link
+      href="/assets/open-iconic/font/css/open-iconic-bootstrap.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>Les petits plats</title>
+  </head>
+  <body>
+    <header>
+      <img class="logo" src="/assets/logo.png" alt="" />
+    </header>
+
+    <main>
+      <form>
+        <div class="form-group">
+          <input
+            class="form-control"
+            type="search"
+            placeholder="Search"
+            aria-label="Search"
+          />
+        </div>
+      </form>
+      <div id="filters">
+        <div class="badge">
+        <span class="badge badge-primary">Primary 
+          <p class="oi oi-circle-x"></p></span>
+        <span class="badge badge-secondary">Secondary
+          <p class="oi oi-circle-x"></p></span>
+        </span>
+        <span class="badge badge-success">Success
+          <p class="oi oi-circle-x"></p></span>
+        </span>
+      </div>
+    </div>
+    
+      <div id="dropdown-filters">
+        <div class="dropdown">
+          <button
+            class="btn btn-primary dropdown-toggle"
+            type="button"
+            id="dropdownMenuButton"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            Ingredients
+          </button>
+          
+          <div class="dropdown-menu dropdown-expended" aria-labelledby="dropdownMenuButton">
+            <div class="dropdown-col">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+          <div class="dropdown-col">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </div>
+      </div>
+        <div class="dropdown">
+          <button
+            class="btn btn-secondary dropdown-toggle"
+            type="button"
+            id="dropdownMenuButton"
+            data-toggle="dropdown"
+            aria-haspopup="true"            
+            aria-expanded="false"
+          >
+            Appareils
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </div>
+
+        <div class="dropdown">
+          <button
+            class="btn btn-sucess dropdown-toggle"
+            type="button"
+            id="dropdownMenuButton"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            Ustensiles
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+            
+          </div>
+        </div>
+
+      </div>
+
+      <div id="cards" class="container-fluid">
+            <div class="card">
+              <img
+                class="card-img-top"
+                alt=""
+              />
+              <div class="card-body">
+                <h5 class="card-title">Limonade de Coco</h5>
+                <span class="oi oi-clock"> 10 min</span>
+                <div class="ingredients">
+                  <ul>
+                    <li><span class="ingredients-list">Lait de coco :</span> 400ml</li>
+                    <li><span class="ingredients-list">Lait de coco :</span> 400ml</li>
+                    <li><span class="ingredients-list">Lait de coco :</span> 400ml</li>
+                    <li><span class="ingredients-list">Lait de coco :</span> 400ml</li>
+                  </ul>
+                </div>
+                <div class="description">
+                  Mettre les glaçons à votre goût dans le blender, ajouter le
+                  lait, la crème de coco, le jus de 2 citrons et le sucre. Mixer
+                  jusqu'à avoir la consistence désirée
+                </div>
+              </div>
+            </div>
+       
+          </div>
+    </main>
+  </body>
+<script src="main.js" type="module"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</html>
