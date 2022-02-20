@@ -43,10 +43,11 @@ export class RecipeCard {
 
       const span = document.createElement("span");
       span.setAttribute("class", "ingredients-list");
-      // span.nodeValue = ingredient.ingredient;
       span.textContent = ingredient.ingredient;
       li.appendChild(span);
-      li.nodeValue = `${ingredient.quantity}${ingredient.unit}`;
+      //bug dans recipes on as quantity et quantite
+       li.textContent = `:${ingredient.quantity}${ingredient.unit}`;
+      console.log(li)
     });
 
     // description a faire

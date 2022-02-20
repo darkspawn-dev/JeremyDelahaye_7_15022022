@@ -7,9 +7,11 @@ function init() {
   recipes.forEach((r) => {
     const { name, ingredients, description, time } = r;
     const card = new RecipeCard(name, ingredients, description, time).render();
-      // append cards to dom
-      cardContainer.appendChild(card);
+    // append cards to dom
+    cardContainer.appendChild(card);
   });
 }
+ 
 
-init();
+
+init()
