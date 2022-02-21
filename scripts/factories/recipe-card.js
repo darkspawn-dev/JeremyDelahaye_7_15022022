@@ -20,14 +20,12 @@ export class RecipeCard {
 
     const h5 = document.createElement("h5");
     h5.setAttribute("class", "card-title");
-    // h5.nodeValue = this.title;
     h5.textContent = this.title;
     cardBody.appendChild(h5);
 
     const duration = document.createElement("span");
     duration.setAttribute("class", "oi oi-clock");
     cardBody.appendChild(duration);
-    // duration.nodeValue = `${this.duration}min`;
     duration.textContent = `${this.duration}min`;
 
     const ingredients = document.createElement("div");
@@ -46,7 +44,7 @@ export class RecipeCard {
       span.textContent = ingredient.ingredient;
       li.appendChild(span);
       //bug dans recipes on as quantity et quantite
-       li.textContent = `:${ingredient.quantity}${ingredient.unit}`;
+       li.textContent = `:${ingredient.quantity} ${ingredient.unit}`;
       console.log(li)
     });
 
@@ -58,5 +56,4 @@ export class RecipeCard {
     
     return card
   }
-  
 }
