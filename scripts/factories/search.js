@@ -1,5 +1,5 @@
 search() {
-
+    
     const form = document.createElement("form");
 
     const formDiv = document.createElement("div");

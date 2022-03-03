@@ -16,18 +16,25 @@ function initCards() {
 
 // affichage des dropdowns
 function initDropdowns(items) {
+  const ingredientsList = extract(
+    extract(recipes, "ingredients"),
+    "ingredient"
+  );
+  const ustensilsList = extract(recipes, "ustensils");
+  const appareilsList = extract(recipes, "appliance");
+
   const dropdownContainer = document.getElementById("dropdown-filters");
 
   const ingredientDropdown = new Dropdown(
     "ingredient-dropdown",
-    ["banane", "mangue"],
+    ingredientsList,
     "ingredients"
   );
   ingredientDropdown.init(dropdownContainer);
 
   const applianceDropdown = new Dropdown(
     "appliance-dropdown",
-    ["blender", "saladier", "blender", "saladier"],
+    appareilsList,
     "appareils",
     "red"
   );
@@ -35,7 +42,7 @@ function initDropdowns(items) {
 
   const ustensils = new Dropdown(
     "ustensils-dropdown",
-    ["couteau", "verre", "couteau", "verre", "couteau", "verre"],
+    ustensilsList,
     "ustensiles",
     "green"
   );
@@ -43,44 +50,24 @@ function initDropdowns(items) {
 }
 
 function extract(l, key) {
-  console.log(l);
-
-  let ingredients = [];
-  let ustensils = [];
-  let appareils = [];
-
-  l.forEach((element) => {
-    if (!appareils.includes(element.appliance)) {
-      appareils.push(element.appliance);
-      appareils.sort();
+  const result = new Set();
+  for (const element of l) {
+    if (Array.isArray(element[key])) {
+      for (const i of element[key]) {
+        result.add(i);
+      }
+      continue;
     }
 
-    element.ustensils.forEach((ustensil) => {
-      if (!ustensils.includes(ustensil)) {
-        ustensils.push(ustensil);
-        ustensils.sort();
-      }
-    });
-    element.ingredients.forEach((ingredient) => {
-      if (
-        !ingredients.includes(
-          ingredient.ingredient.toLowerCase().replace(".", "")
-        )
-      ) {
-        ingredients.push(ingredient.ingredient.toLowerCase().replace(".", ""));
-        ingredients.sort();
-      }
-    });
-  });
-  let list = { ingredients, ustensils, appareils };
-
-  return list;
+    result.add(element[key]);
+  }
+  // result.sort();
+  return [...result].sort();
 }
 
 function init() {
   initCards();
   initDropdowns();
-  console.log(extract(recipes, "id"));
 }
 
 init();

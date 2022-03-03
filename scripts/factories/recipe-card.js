@@ -1,3 +1,4 @@
+// creation de la class card
 export class RecipeCard {
   constructor(title, ingredients, description, duration) {
     this.title = title;
@@ -5,7 +6,7 @@ export class RecipeCard {
     this.description = description;
     this.duration = duration;
   }
-// creation des élements
+// creation des élements cards
   render() {
     const card = document.createElement("div");
     card.setAttribute("class", "card");

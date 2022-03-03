@@ -1,3 +1,4 @@
+// creation de la class dropdown
 export class Dropdown {
   constructor(id, items, dataType, color, ingredients) {
     this.id = id;
@@ -7,6 +8,7 @@ export class Dropdown {
     this.ingredients = ingredients;
   }
 
+  // init les composants
   init(container) {
     const dropdown = this.render();
     this.dropdown = dropdown;
@@ -15,7 +17,9 @@ export class Dropdown {
     this.addEvents(dropdown);
     container.appendChild(dropdown);
   }
-  // creation des élements
+
+
+  // creation des élements de la dropdown
   render() {
     const dropdown = document.createElement("div");
     dropdown.setAttribute("id", this.id);
@@ -62,6 +66,7 @@ export class Dropdown {
     return dropdown;
   }
 
+  // création de la class color pour les filtres
   colorClass() {
     switch (this.color) {
       case 'red':
@@ -100,7 +105,7 @@ export class Dropdown {
     });
     const close = dropdown.querySelector("span.dropdown-filter-content-close");
     close.addEventListener("click", function () {
-      const span = this;
+      // const span = this;
       const content = this.closest("div.dropdown-filter-content");
       content.style.display = "none";
 
@@ -110,5 +115,8 @@ export class Dropdown {
 
     const key = dropdown.querySelector("input");
     key.addEventListener("keyup", (e) => this.populate(e.target.value));
+
+    // addeventlistener on item
+    // const selectItem = dropdown()
   }
 }
