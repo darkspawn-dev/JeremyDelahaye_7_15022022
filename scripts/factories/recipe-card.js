@@ -5,7 +5,7 @@ export class RecipeCard {
     this.description = description;
     this.duration = duration;
   }
-
+// creation des élements
   render() {
     const card = document.createElement("div");
     card.setAttribute("class", "card");
@@ -13,7 +13,7 @@ export class RecipeCard {
     const img = document.createElement("img");
     img.setAttribute("class", "card-img-top");
     card.appendChild(img);
-    
+
     const cardBody = document.createElement("div");
     cardBody.setAttribute("class", "card-body");
     card.appendChild(cardBody);
@@ -26,11 +26,11 @@ export class RecipeCard {
     const duration = document.createElement("span");
     duration.setAttribute("class", "oi oi-clock");
     cardBody.appendChild(duration);
-    duration.textContent = `${this.duration}min`;
+    duration.textContent = ` ${this.duration} min`;
 
     const ingredients = document.createElement("div");
     ingredients.setAttribute("class", "ingredients");
-    cardBody.appendChild(ingredients)
+    cardBody.appendChild(ingredients);
 
     const ul = document.createElement("ul");
     ingredients.appendChild(ul);
@@ -43,17 +43,21 @@ export class RecipeCard {
       span.setAttribute("class", "ingredients-list");
       span.textContent = ingredient.ingredient;
       li.appendChild(span);
-      //bug dans recipes on as quantity et quantite
-       li.textContent = `:${ingredient.quantity} ${ingredient.unit}`;
-      console.log(li)
+
+      const quantitySpan = document.createElement('span');
+      li.appendChild(quantitySpan)
+      if (ingredient.quantity && ingredient.unit) {        
+        quantitySpan.textContent = `: ${ingredient.quantity} ${ingredient.unit}`; 
+      } else if (ingredient.quantity) {
+        quantitySpan.textContent = `: ${ingredient.quantity}`;
+      }
     });
 
-    // description a faire
     const description = document.createElement("div");
     description.setAttribute("class", "description");
-    description.textContent = this.description
+    description.textContent = this.description;
     cardBody.appendChild(description);
-    
-    return card
+
+    return card;
   }
 }
