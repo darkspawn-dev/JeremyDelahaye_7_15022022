@@ -105,7 +105,7 @@ export class Dropdown {
     });
     const close = dropdown.querySelector("span.dropdown-filter-content-close");
     close.addEventListener("click", function () {
-      // const span = this;
+      const span = this;
       const content = this.closest("div.dropdown-filter-content");
       content.style.display = "none";
 
@@ -117,6 +117,11 @@ export class Dropdown {
     key.addEventListener("keyup", (e) => this.populate(e.target.value));
 
     // addeventlistener on item
-    // const selectItem = dropdown()
+    const selectItem = dropdown.querySelectorAll("span.filter-element");
+    selectItem.forEach(function (item) {
+      item.addEventListener("click", function () {
+        console.log(this.textContent)
+      })
+    })
   }
 }
