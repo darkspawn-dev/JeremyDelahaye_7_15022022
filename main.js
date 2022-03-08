@@ -2,10 +2,15 @@ import recipes from "./scripts/data/recipes.js";
 import { RecipeCard } from "./scripts/factories/recipe-card.js";
 import { Dropdown } from "./scripts/factories/dropdown.js";
 
+const search = null;
+const filters = {}
+
 // affichage des cartes
-function populateCards(search, filters) {
+function populateCards() {
+  console.log(filters)
   // for each recipe, instantiate, recipe card class
   const cardContainer = document.getElementById("cards");
+  cardContainer.textContent = "";
   recipes.forEach((r) => {
     const { name, ingredients, description, time } = r;
     const card = new RecipeCard(name, ingredients, description, time).render();
@@ -30,7 +35,9 @@ function initDropdowns(items) {
     "ingredient-dropdown",
     ingredientsList,
     "ingredients",
-    badgeContainer
+    badgeContainer,
+    filters,
+    populateCards
   );
   ingredientDropdown.init(dropdownContainer);
 
@@ -39,6 +46,8 @@ function initDropdowns(items) {
     appareilsList,
     "appareils",
     badgeContainer,
+    filters,
+    populateCards,
     "red"
   );
   applianceDropdown.init(dropdownContainer);
@@ -48,6 +57,8 @@ function initDropdowns(items) {
     ustensilsList,
     "ustensiles",
     badgeContainer,
+    filters,
+    populateCards,
     "green"
   );
   ustensils.init(dropdownContainer);
@@ -70,13 +81,8 @@ function extract(l, key) {
 }
 
 function init() {
-  const search = null;
-  const filters = {
-    "ingredients": [],
-    "ustensils": [],
-    "appliance": [],
-  }
-  populateCards(search, filters);
+
+  populateCards();
   initDropdowns();
 }
 

@@ -1,12 +1,22 @@
 // creation de la class dropdown
 export class Dropdown {
-  constructor(id, items, dataType, badgeContainer, color) {
+  constructor(
+    id,
+    items,
+    dataType,
+    badgeContainer,
+    filters,
+    populateCards,
+    color
+  ) {
     this.id = id;
     this.items = items;
     this.dataType = dataType;
     this.color = color;
     this.badgeContainer = badgeContainer;
-    console.log(badgeContainer);
+    filters[dataType] = [];
+    this.filters = filters;
+    this.populateCards = populateCards;
   }
 
   // init les composants
@@ -72,7 +82,7 @@ export class Dropdown {
 
   // création class pour le placeholder des input
   input() {
-    return `Rechercher un ${this.dataType}`
+    return `Rechercher un ${this.dataType}`;
   }
   // création de la class color pour les filtres
   colorClass() {
@@ -129,8 +139,10 @@ export class Dropdown {
 
     // addeventlistener on item
     const selectItem = dropdown.querySelectorAll("span.filter-element");
-    selectItem.forEach( (item) => {
-      item.addEventListener("click", (e) => this.appendBadge(e.target.textContent));
+    selectItem.forEach((item) => {
+      item.addEventListener("click", (e) =>
+        this.appendBadge(e.target.textContent)
+      );
     });
   }
 
@@ -146,7 +158,14 @@ export class Dropdown {
     badge.appendChild(icon);
 
     this.badgeContainer.appendChild(badge);
+    this.filters[this.dataType].push(value);
 
-    icon.addEventListener("click", (e) => e.target.parentNode.remove())
+    icon.addEventListener("click", (e) => {
+      e.target.parentNode.remove()
+      this.filters[this.dataType] = this.filters[this.dataType].filter(i => i !== value)
+      this.populateCards()
+    });
+  
+    this.populateCards();
   }
 }
