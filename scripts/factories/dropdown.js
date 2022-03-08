@@ -1,11 +1,12 @@
 // creation de la class dropdown
 export class Dropdown {
-  constructor(id, items, dataType, color, ingredients) {
+  constructor(id, items, dataType, badgeContainer, color) {
     this.id = id;
     this.items = items;
     this.dataType = dataType;
     this.color = color;
-    this.ingredients = ingredients;
+    this.badgeContainer = badgeContainer;
+    console.log(badgeContainer);
   }
 
   // init les composants
@@ -18,7 +19,6 @@ export class Dropdown {
     container.appendChild(dropdown);
   }
 
-
   // creation des élements de la dropdown
   render() {
     const dropdown = document.createElement("div");
@@ -27,20 +27,21 @@ export class Dropdown {
 
     const button = document.createElement("div");
     button.setAttribute("class", `dropdown-filter-button ${this.colorClass()}`);
-    const p = document.createElement('p');
+    const p = document.createElement("p");
     p.textContent = this.dataType;
     button.appendChild(p);
- 
-    dropdown.appendChild(button);
 
+    dropdown.appendChild(button);
 
     const icon = document.createElement("span");
     icon.setAttribute("class", "oi oi-chevron-bottom");
     button.appendChild(icon);
 
     const content = document.createElement("div");
-    content.setAttribute("class", `dropdown-filter-content ${this.colorClass()}`);
- 
+    content.setAttribute(
+      "class",
+      `dropdown-filter-content ${this.colorClass()}`
+    );
     dropdown.appendChild(content);
 
     const searchBar = document.createElement("div");
@@ -49,15 +50,18 @@ export class Dropdown {
 
     const input = document.createElement("input");
     input.setAttribute("type", "text");
-    input.setAttribute("placeholder", "Rechercher un ingredient");
+    input.setAttribute("placeholder", `${this.input()}`);
     input.setAttribute("class", this.colorClass());
 
     searchBar.appendChild(input);
 
     const close = document.createElement("span");
     close.setAttribute("class", "dropdown-filter-content-close");
-    close.textContent = "close";
     searchBar.appendChild(close);
+
+    const iconUp = document.createElement("span");
+    iconUp.setAttribute("class", "oi oi-chevron-top");
+    close.appendChild(iconUp);
 
     const items = document.createElement("div");
     items.setAttribute("class", "dropdown-filter-content-items");
@@ -66,21 +70,27 @@ export class Dropdown {
     return dropdown;
   }
 
+  // création class pour le placeholder des input
+  input() {
+    return `Rechercher un ${this.dataType}`
+  }
   // création de la class color pour les filtres
   colorClass() {
     switch (this.color) {
-      case 'red':
-        return 'color__red';
-      case 'green':
-        return 'color__green';
+      case "red":
+        return "color__green";
+      case "green":
+        return "color__red";
       default:
-        return 'color__default';
+        return "color__default";
     }
   }
 
   // function filtres bouton dropdowns
   populate(filter) {
-    const items = this.items.filter((v) => v.match(filter));
+    const items = this.items.filter((v) =>
+      v.toLowerCase().match(filter ? filter.toLowerCase() : undefined)
+    );
     const itemsContainer = this.dropdown.querySelector(
       "div.dropdown-filter-content-items"
     );
@@ -92,7 +102,7 @@ export class Dropdown {
       itemsContainer.appendChild(span);
     }
   }
- 
+
   //addEventlistener des bouton dropdowns
   addEvents(dropdown) {
     const filterButton = dropdown.querySelector("div.dropdown-filter-button");
@@ -104,8 +114,9 @@ export class Dropdown {
       content.style.display = "inline-block";
     });
     const close = dropdown.querySelector("span.dropdown-filter-content-close");
-    close.addEventListener("click", function () {
-      const span = this;
+
+    close.addEventListener("click", function (e) {
+      // const span = this;
       const content = this.closest("div.dropdown-filter-content");
       content.style.display = "none";
 
@@ -118,10 +129,24 @@ export class Dropdown {
 
     // addeventlistener on item
     const selectItem = dropdown.querySelectorAll("span.filter-element");
-    selectItem.forEach(function (item) {
-      item.addEventListener("click", function () {
-        console.log(this.textContent)
-      })
-    })
+    selectItem.forEach( (item) => {
+      item.addEventListener("click", (e) => this.appendBadge(e.target.textContent));
+    });
+  }
+
+  appendBadge(value) {
+    // create badge with value & color
+
+    const badge = document.createElement("span");
+    badge.setAttribute("class", `badge badge-primary ${this.colorClass()}`);
+    badge.textContent = value;
+
+    const icon = document.createElement("p");
+    icon.setAttribute("class", "oi oi-circle-x");
+    badge.appendChild(icon);
+
+    this.badgeContainer.appendChild(badge);
+
+    icon.addEventListener("click", (e) => e.target.parentNode.remove())
   }
 }

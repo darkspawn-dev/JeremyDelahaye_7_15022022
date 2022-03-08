@@ -3,7 +3,7 @@ import { RecipeCard } from "./scripts/factories/recipe-card.js";
 import { Dropdown } from "./scripts/factories/dropdown.js";
 
 // affichage des cartes
-function initCards() {
+function populateCards(search, filters) {
   // for each recipe, instantiate, recipe card class
   const cardContainer = document.getElementById("cards");
   recipes.forEach((r) => {
@@ -24,11 +24,13 @@ function initDropdowns(items) {
   const appareilsList = extract(recipes, "appliance");
 
   const dropdownContainer = document.getElementById("dropdown-filters");
+  const badgeContainer = document.getElementById("filters");
 
   const ingredientDropdown = new Dropdown(
     "ingredient-dropdown",
     ingredientsList,
-    "ingredients"
+    "ingredients",
+    badgeContainer
   );
   ingredientDropdown.init(dropdownContainer);
 
@@ -36,6 +38,7 @@ function initDropdowns(items) {
     "appliance-dropdown",
     appareilsList,
     "appareils",
+    badgeContainer,
     "red"
   );
   applianceDropdown.init(dropdownContainer);
@@ -44,6 +47,7 @@ function initDropdowns(items) {
     "ustensils-dropdown",
     ustensilsList,
     "ustensiles",
+    badgeContainer,
     "green"
   );
   ustensils.init(dropdownContainer);
@@ -66,7 +70,13 @@ function extract(l, key) {
 }
 
 function init() {
-  initCards();
+  const search = null;
+  const filters = {
+    "ingredients": [],
+    "ustensils": [],
+    "appliance": [],
+  }
+  populateCards(search, filters);
   initDropdowns();
 }
 

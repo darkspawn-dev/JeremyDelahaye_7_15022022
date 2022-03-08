@@ -74,9 +74,10 @@ main {
 }
 /************** filtres *****************/
 #filters {
-  position: relative;
-  top: 20%;
-  margin-left: 105px;
+  display: flex;
+  margin-top: 60px;
+  margin-left:115px;
+  gap: 20px;
 }
 
 .badge {
@@ -90,25 +91,6 @@ main {
 p {
   margin-left: 10px;
 }
-.badge-primary,
-.btn-primary {
-  background: #3282f7;
-}
-.badge-secondary,
-.btn-secondary {
-  margin-left: 20px;
-  background: #68d9a4;
-}
-.badge-success,
-.btn-sucess {
-  margin-left: 20px;
-  background: #ed6454;
-}
-#dropdown-filters {
-  display: flex;
-  margin-left: 115px;
-  margin-top: 30px;
-}
 
 button {
   width: 170px;
@@ -121,6 +103,9 @@ button {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  position: absolute;
+  top: 50%;
+  left: 5%;
 }
 
 .card {
@@ -143,6 +128,7 @@ button {
   flex-direction: row;
   flex-wrap: wrap;
   height: 178px;
+
 }
 
 .card-title {
@@ -180,34 +166,41 @@ button {
   font-weight: 400;
   width: 200px;
   height: 120px;
-  left: 50.26%;
+  left: 52%;
   right: 4.74%;
   top: 60%;
   font-size: 12px;
   line-height: 100%;
-  overflow: hidden;
-  /* text-overflow: ellipsis;
+  /* /* overflow: hidden;
+ text-overflow: ellipsis;
   white-space: pre-wrap;
-  white-space: ; */
+  white-space: ; */  */
 }
 
 /********************** dropdown ***************/
 
-#dropdown-filters {
+ #dropdown-filters {
+  position: absolute;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-column-gap: 40px;
   grid-row-gap: 37px;
-  margin-top: 40px;
-
+top: 40%;
+  z-index: 1;
+  margin-left: 115px;
 }
+ #dropdown-filters {
+  display: flex;
+  /* flex-wrap:wrap;  */
+  margin-left: 115px;
+   gap: 20px; 
+} 
 
 div.dropdown-filter-button {
   display: flex;
-  justify-content: center;
   border: solid thin black;
   border-radius: 5px;
-  padding: 20px;
+  padding: 20px 0 0 10px;
   /* grid-area: 1 / 1 / 2 / 4; */
   width: 170px;
   height: 69px;
@@ -225,25 +218,34 @@ div.dropdown-filter-button p::first-letter {
 
 div.dropdown-filter-content {
   display: none;
-  width: 100%;
+  /* width: fit-content; */
   border-radius: 10px;
   color: white;
   font-size: 18px;
   font-style: Lato;
+  font-weight: 400;
   padding: 10px;
+  padding-bottom: 20px;
+}
+div.dropdown-filter-content.open {
+  display: block;
 }
 
-div.dropdown-filter-content-searchbar {
-  width: 100%;
+div.dropdown-filter-content-searchbar{
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 30px;
+ margin-left: 20px;
 }
 
 .dropdown-filter-content-close {
   width: 10%;
   margin-left: 20%;
 }
-
+.filter-element{
+  cursor: pointer;
+}
 input {
   width: 40%;
   text-align: center;
@@ -252,18 +254,17 @@ input {
   color: #fff;
   font-weight: 400;
   outline-style: none;
+  width: fit-content;
 }
 
-.span div.dropdown-filter-content input {
-  width: auto;
-}
 
 div.dropdown-filter-content-items {
   display: grid;
-  padding: 30px;
-  margin-left: 25px;
-  grid-template-columns: repeat(auto-fill, minmax(20%, 1fr));
-  grid-column-gap: 20px;
+  padding-top: 20px;
+  margin-left:20px;
+  grid-template-columns: 200px 200px 200px;
+  grid-column-gap: 60px;
+
 }
 
 .color__default {
@@ -276,27 +277,17 @@ div.dropdown-filter-content-items {
   background-color: #ed6454;
 }
 
-/* #ingredients {
-  background-color: #3282f7;
-} */
-
-/* #appliance {
-  background-color: #68d9a4;
+.oi-chevron-bottom, .oi-chevron-top {
+ display: inline-block; 
+ margin-left: 25px;
 }
 
-#ustensils {
-  background-color: #ed6454;
-} */
 
-.oi-chevron-bottom {
+input {
+  text-align: left;
+}
+
+.oi-chevron-top {
   display: inline-block;
-  margin-left: 30px;
+  padding: 5px;
 }
-
-
-.oi-chevron-bottom:active {
-  transform: rotate(180deg);
-}
-
-
-

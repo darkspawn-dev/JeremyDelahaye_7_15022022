@@ -1,4 +1,4 @@
-search() {
+export const search = (array, input) => {
     
     const form = document.createElement("form");
 
@@ -15,4 +15,5 @@ search() {
     const icon = document.createElement("p")
     icon.setAttribute("class", "oi-magnifying-glass");
     input.appendChild(icon);
+
 }
