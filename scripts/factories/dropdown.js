@@ -140,7 +140,8 @@ export class Dropdown {
     const badge = document.createElement("span");
     badge.setAttribute("class", `badge badge-primary ${this.colorClass()}`);
     badge.textContent = value;
-
+    badge.dataset.dataType = this.dataType;
+    badge.dataset.value = value;
     const icon = document.createElement("p");
     icon.setAttribute("class", "oi oi-circle-x");
     badge.appendChild(icon);
