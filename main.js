@@ -2,12 +2,19 @@ import recipes from "./scripts/data/recipes.js";
 import { RecipeCard } from "./scripts/factories/recipe-card.js";
 import { Dropdown } from "./scripts/factories/dropdown.js";
 
-const search = null;
-const filters = {}
+let search = null;
+const filters = {};
+
+const searchBar = document.getElementById("searchBar");
+searchBar.addEventListener("keyup", (e) => {
+  search = e.target.value;
+  populateCards();
+});
 
 // affichage des cartes
 function populateCards() {
-  console.log(filters)
+  console.log(search)
+  console.log(filters);
   // for each recipe, instantiate, recipe card class
   const cardContainer = document.getElementById("cards");
   cardContainer.textContent = "";
@@ -81,7 +88,6 @@ function extract(l, key) {
 }
 
 function init() {
-
   populateCards();
   initDropdowns();
 }
