@@ -5,20 +5,26 @@ import { Dropdown } from "./scripts/factories/dropdown.js";
 let search = null;
 const filters = {};
 
+// addEvent listener on searchBar
 const searchBar = document.getElementById("searchBar");
 searchBar.addEventListener("keyup", (e) => {
   search = e.target.value;
   populateCards();
 });
 
+function filteredRecipes() {
+  console.log(search)
+  console.log(filters)
+  return recipes
+}
+
 // affichage des cartes
 function populateCards() {
-  console.log(search)
-  console.log(filters);
+
   // for each recipe, instantiate, recipe card class
   const cardContainer = document.getElementById("cards");
   cardContainer.textContent = "";
-  recipes.forEach((r) => {
+  filteredRecipes().forEach((r) => {
     const { name, ingredients, description, time } = r;
     const card = new RecipeCard(name, ingredients, description, time).render();
     // append cards to dom
@@ -71,6 +77,7 @@ function initDropdowns(items) {
   ustensils.init(dropdownContainer);
 }
 
+// affichage de la liste des items dropdowns
 function extract(l, key) {
   const result = new Set();
   for (const element of l) {

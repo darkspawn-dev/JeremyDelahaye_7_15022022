@@ -135,7 +135,10 @@ export class Dropdown {
     });
 
     const key = dropdown.querySelector("input");
-    key.addEventListener("keyup", (e) => this.populate(e.target.value));
+    key.addEventListener("keyup", (e) => {
+      this.populate(e.target.value);
+      this.addEvents(this.dropdown);
+    });
 
     // addeventlistener on item
     const selectItem = dropdown.querySelectorAll("span.filter-element");
@@ -161,11 +164,13 @@ export class Dropdown {
     this.filters[this.dataType].push(value);
 
     icon.addEventListener("click", (e) => {
-      e.target.parentNode.remove()
-      this.filters[this.dataType] = this.filters[this.dataType].filter(i => i !== value)
-      this.populateCards()
+      e.target.parentNode.remove();
+      this.filters[this.dataType] = this.filters[this.dataType].filter(
+        (i) => i !== value
+      );
+      this.populateCards();
     });
-  
+
     this.populateCards();
   }
 }
