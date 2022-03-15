@@ -38,6 +38,7 @@ export class Dropdown {
     const button = document.createElement("div");
     button.setAttribute("class", `dropdown-filter-button ${this.colorClass()}`);
     const p = document.createElement("p");
+    p.setAttribute("class", "dropdownTitle")
     p.textContent = this.dataType;
     button.appendChild(p);
 

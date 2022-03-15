@@ -81,7 +81,7 @@ main {
 }
 
 .badge {
-  width: 107px;
+  width: fit-content;
   height: 37px;
   border-radius: 5px;
   font-size: 12px;
@@ -91,7 +91,9 @@ main {
 p {
   margin-left: 10px;
 }
-
+.dropdownTitle {
+  display: flex;justify-content:space-between;
+}
 button {
   width: 170px;
   height: 69px;
@@ -280,16 +282,11 @@ div.dropdown-filter-content-items {
 }
 
 .oi-chevron-bottom, .oi-chevron-top {
- display: inline-block; 
+display: block;
  margin-left: 25px;
 }
 
 
 input {
   text-align: left;
-}
-
-.oi-chevron-top {
-  display: inline-block;
-  padding: 5px;
 }
