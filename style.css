@@ -176,7 +176,7 @@ button {
   /* /* overflow: hidden;
  text-overflow: ellipsis;
   white-space: pre-wrap;
-  white-space: ; */  */
+  white-space: ; */
 }
 
 /********************** dropdown ***************/
@@ -225,7 +225,6 @@ div.dropdown-filter-content {
   border-radius: 10px;
   color: white;
   font-size: 18px;
-  font-style: Lato;
   font-weight: 400;
   padding: 10px;
   padding-bottom: 20px;
