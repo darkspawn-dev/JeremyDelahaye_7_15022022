@@ -104,10 +104,10 @@ button {
   width: 90%;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
-  position: absolute;
-  top: 50%;
+
+  top: 60%;
   left: 5%;
+  gap: 9%;
 }
 
 .card {
@@ -181,29 +181,24 @@ button {
 /********************** dropdown ***************/
 
  #dropdown-filters {
-  position: absolute;
+   display: flex;
+  /* position: absolute;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-column-gap: 40px;
-  grid-row-gap: 37px;
-  top: 40%;
+  grid-row-gap: 37px; */
+  margin-top: 50px;
   z-index: 1;
   margin-left: 115px;
+  gap: 20px; 
 }
-
- #dropdown-filters {
-  display: flex;
-  /* flex-wrap:wrap;  */
-  margin-left: 115px;
-   gap: 20px; 
-} 
 
 div.dropdown-filter-button {
   display: flex;
+  justify-content: center;
   border: solid thin black;
   border-radius: 5px;
   padding: 20px 0 0 10px;
-  /* grid-area: 1 / 1 / 2 / 4; */
   width: 170px;
   height: 69px;
   text-align: center;
@@ -224,7 +219,6 @@ div.dropdown-filter-content {
   border-radius: 10px;
   color: white;
   font-size: 18px;
-  font-style: Lato;
   font-weight: 400;
   padding: 10px;
   padding-bottom: 20px;
