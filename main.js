@@ -14,6 +14,7 @@ searchBar.addEventListener("keyup", (e) => {
 
 function filteredRecipes() {
   // search should filter on title, description, ingredient
+
   // filters should filter on target property
 
   const fRecipes = [];
@@ -31,66 +32,53 @@ function filteredRecipes() {
         filter = true;
       }
     }
-    if (filters.ustensils) {
-      filters.ustensils.forEach((ust, ustIndex) => {
-        let ustensilesIsPresent = false;
-        r.ustensils.forEach((ustensilsR) => {
-          if (ustensilsR === ust) {
-            ustensilesIsPresent = true;
-          }
-        });
-        if (!ustensilesIsPresent) {
-          filter = true;
-        }
-      });
-    }
-    if (filters.appliance) {
-      filters.appliance.forEach((app, ustIndex) => {
-        let applianceIsPresent = false;
-        if (app === r.appliance) {
-          applianceIsPresent = true;
-        }
 
-        if (!applianceIsPresent) {
-          filter = true;
+    for (const ustensils of filters.ustensils) {
+      let ustensilesIsPresent = false;
+      for (const ustensilsR of r.ustensils) {
+        if (ustensilsR === ustensils) {
+          ustensilesIsPresent = true;
         }
-      });
+      }
+      if (!ustensilesIsPresent) {
+        filter = true;
+      }
+    }
+    for (const appliance of filters.appliance) {
+      let applianceIsPresent = false;
+
+      if (appliance === r.appliance) {
+        applianceIsPresent = true;
+      }
+
+      if (!applianceIsPresent) {
+        filter = true;
+      }
+    }
+    if (search && search.length >= 3) {
+      const reg = new RegExp(search, 'i')
+      let ingredientMatch = false;
+      for (const ingredient of r.ingredients) {
+        if (ingredient.ingredient.match(reg)) {
+          ingredientMatch = true;
+        }
+      }
+
+      if (
+        !ingredientMatch &&
+        !r.description.match(reg) &&
+        !r.name.match(reg)
+      ) {
+        filter = true;
+      }
     }
     if (!filter) {
       fRecipes.push(r);
     }
   }
-  const searchedRecipes = fRecipes;
 
-  return searchedRecipes;
+  return fRecipes;
 }
-
-//   const fRecipes = [];
-//   recipes.forEach((r, i) => {
-//     let filter = false;
-//     if (filters.ingredients) {
-//       filters.ingredients.forEach((ingredient, ingredientIndex) => {
-//         let ingredientIsPresent = false;
-//         r.ingredients.forEach((ingredientRecipe) => {
-//           console.log(ingredientRecipe)
-//           if (ingredientRecipe.ingredient === ingredient) {
-//             ingredientIsPresent = true;
-//           }
-//         });
-//         if (!ingredientIsPresent) {
-//           filter = true;
-//         }
-//       });
-//     }
-//     if (!filter) {
-//       fRecipes.push(r);
-//     }
-//   });
-
-//   const searchedRecipes = fRecipes;
-
-//   return searchedRecipes;
-// }
 
 // affichage des cartes
 function populateCards() {
@@ -171,7 +159,6 @@ function extract(l, key) {
 function init() {
   initDropdowns();
   populateCards();
-
 }
 
 init();

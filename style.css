@@ -130,7 +130,6 @@ button {
   flex-direction: row;
   flex-wrap: wrap;
   height: 178px;
-
 }
 
 .card-title {
@@ -173,10 +172,10 @@ button {
   top: 60%;
   font-size: 12px;
   line-height: 100%;
-  /* /* overflow: hidden;
+  /* overflow: hidden;
  text-overflow: ellipsis;
-  white-space: pre-wrap;
-  white-space: ; */  */
+  white-space: nowrap; */
+
 }
 
 /********************** dropdown ***************/
