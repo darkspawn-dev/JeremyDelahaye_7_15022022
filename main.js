@@ -14,11 +14,10 @@ searchBar.addEventListener("keyup", (e) => {
 
 function filteredRecipes() {
   // search should filter on title, description, ingredient
-
   // filters should filter on target property
 
   const fRecipes = [];
-
+// recherche via tags
   for (const r of recipes) {
     let filter = false;
     for (const ingredient of filters.ingredients) {
@@ -55,6 +54,8 @@ function filteredRecipes() {
         filter = true;
       }
     }
+
+    // recherche via la barre de recherche ( title, description, ingredient)
     if (search && search.length >= 3) {
       const reg = new RegExp(search, 'i')
       let ingredientMatch = false;
