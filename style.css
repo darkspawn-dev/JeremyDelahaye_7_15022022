@@ -282,11 +282,7 @@ input {
     width: 45%;
     font-size: 15px;
   }
-.form-control::after {
-  content: "Recherche";
- text-indent: 0;
- display: block;
-}
+
   .logo {
     width: 50%;
   }
