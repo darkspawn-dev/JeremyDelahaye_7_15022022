@@ -1,5 +1,8 @@
-// creation de la class dropdown
-export class Dropdown {
+/* `Dropdown` est une classe qui crée un menu déroulant. Il a une méthode `render` qui
+crée le menu déroulant et une méthode `init` qui ajoute l'écouteur d'événement au menu
+déroulant. */
+export class 
+Dropdown {
   constructor(
     id,
     items,
@@ -20,6 +23,7 @@ export class Dropdown {
   }
 
   // init les composants
+  /* `init` crée le menu déroulant et ajoute l'écouteur d'événements au menu déroulant. */
   init(container) {
     const dropdown = this.render();
     this.dropdown = dropdown;
@@ -29,7 +33,8 @@ export class Dropdown {
     container.appendChild(dropdown);
   }
 
-  // creation des élements de la dropdown
+  
+  /* `render` crée le menu déroulant. */
   render() {
     const dropdown = document.createElement("div");
     dropdown.setAttribute("id", this.id);
@@ -85,7 +90,8 @@ export class Dropdown {
   input() {
     return `Rechercher un ${this.dataType}`;
   }
-  // création de la class color pour les filtres
+
+  /* `colorClass` crée une classe pour la couleur du filtre. */
   colorClass() {
     switch (this.color) {
       case "red":
@@ -97,7 +103,9 @@ export class Dropdown {
     }
   }
 
-  // function filtres bouton dropdowns
+
+  /* `populate` est une fonction qui filtre les éléments du menu déroulant en fonction de l'entrée de
+  l'utilisateur. */
   populate(filter) {
     const items = this.items.filter((v) =>
       v.toLowerCase().match(filter ? filter.toLowerCase() : undefined)

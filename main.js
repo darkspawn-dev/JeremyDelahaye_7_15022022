@@ -12,39 +12,54 @@ searchBar.addEventListener("keyup", (e) => {
   populateCards();
 });
 
+/* Filtrer les recettes en fonction des filtres. */
 function filteredRecipes() {
 
   const fRecipes = [];
-  recipes.forEach((r, i) => {
-    let filter = false;
-    if (filters.ingredients) {
-      filters.ingredients.forEach((ingredient, ingredientIndex) => {
-        let ingredientIsPresent = false;
-        r.ingredients.forEach((ingredientRecipe) => {
-          console.log(ingredientRecipe)
-          if (ingredientRecipe.ingredient === ingredient) {
-            ingredientIsPresent = true;
+
+    recipes.forEach((r, i) => {
+      let filter = false;
+      if (filters.ingredients) {
+        filters.ingredients.forEach((ingredient, ingredientIndex) => {
+          let ingredientPresent = false;
+          r.ingredients.forEach((ingredientRecipe) => {
+            if (ingredientRecipe.ingredient === ingredient) {
+              ingredientPresent = true;
+            }
+          });
+          if (!ingredientPresent) {
+            filter = true;
           }
         });
-        if (!ingredientIsPresent) {
-          filter = true;
-        }
-      });
-    }
-    if (!filter) {
-      fRecipes.push(r);
-    }
-  });
+      }
+      if (filters.ustensils) {
+        filters.ustensils.forEach((Ustensiles, u) => {
+          let ustensilesPresent = false;
+          r.ustensils.forEach((UstensilsRecipe) => {
+            if (UstensilsRecipe === Ustensiles) {
+              ustensilesPresent = true;
+            }
+          })
+          if (!ustensilesPresent) {
+            filter = true;
+          }
+        })
+      }
+      if (!filter) {
+        fRecipes.push(r);
+      }
+    });
 
-  const searchedRecipes = fRecipes;
+    const searchedRecipes = fRecipes;
 
-  return searchedRecipes;
+    return searchedRecipes;
 }
 
 
-// affichage des cartes
+/**
+ * Il crée un objet RecipeCard pour chaque recette dans le tableau filteredRecipes et l'ajoute au DOM.
+ */
 function populateCards() {
-
   // for each recipe, instantiate, recipe card class
   const cardContainer = document.getElementById("cards");
   cardContainer.textContent = "";
@@ -56,8 +71,9 @@ function populateCards() {
   });
 }
 
-// affichage des dropdowns
-function initDropdowns(items) {
+/* Création d'une liste déroulante pour chaque type de filtre. */
+function 
+initDropdowns(items) {
   const ingredientsList = extract(
     extract(recipes, "ingredients"),
     "ingredient"
@@ -81,7 +97,7 @@ function initDropdowns(items) {
   const applianceDropdown = new Dropdown(
     "appliance-dropdown",
     appareilsList,
-    "appareils",
+    "appliance",
     badgeContainer,
     filters,
     populateCards,
@@ -92,7 +108,7 @@ function initDropdowns(items) {
   const ustensils = new Dropdown(
     "ustensils-dropdown",
     ustensilsList,
-    "ustensiles",
+    "ustensils",
     badgeContainer,
     filters,
     populateCards,
@@ -101,7 +117,7 @@ function initDropdowns(items) {
   ustensils.init(dropdownContainer);
 }
 
-// affichage de la liste des items dropdowns
+/* Extraire les ingrédients et les ustensiles du tableau des recettes. */
 function extract(l, key) {
   const result = new Set();
   for (const element of l) {
@@ -118,6 +134,7 @@ function extract(l, key) {
   return [...result].sort();
 }
 
+/* Initialisation des filtres déroulants et des fiches. */
 function init() {
   populateCards();
   initDropdowns();

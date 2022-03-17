@@ -100,11 +100,15 @@ button {
 }
 
 #cards {
+  position: absolute;
   margin-top: 30px;
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  margin-left: 101px;
+  /* justify-content: space-evenly; */
+  top: 47%;
+  gap: 80px;
 }
 
 .card {
@@ -182,8 +186,8 @@ button {
 display: flex;
   z-index: 1;
   margin-left: 115px;
-  margin-top: 50px;
   gap: 20px; 
+  margin-top: 50px;
 }
 
 
