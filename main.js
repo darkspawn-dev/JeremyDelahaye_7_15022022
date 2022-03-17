@@ -83,7 +83,7 @@ function initDropdowns(items) {
   const applianceDropdown = new Dropdown(
     "appliance-dropdown",
     appareilsList,
-    "appliance",
+    "appareils",
     badgeContainer,
     filters,
     populateCards,
@@ -94,7 +94,7 @@ function initDropdowns(items) {
   const ustensils = new Dropdown(
     "ustensils-dropdown",
     ustensilsList,
-    "ustensils",
+    "ustensiles",
     badgeContainer,
     filters,
     populateCards,
