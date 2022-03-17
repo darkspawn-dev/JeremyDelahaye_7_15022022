@@ -13,10 +13,34 @@ searchBar.addEventListener("keyup", (e) => {
 });
 
 function filteredRecipes() {
-  console.log(search)
-  console.log(filters)
-  return recipes
+
+  const fRecipes = [];
+  recipes.forEach((r, i) => {
+    let filter = false;
+    if (filters.ingredients) {
+      filters.ingredients.forEach((ingredient, ingredientIndex) => {
+        let ingredientIsPresent = false;
+        r.ingredients.forEach((ingredientRecipe) => {
+          console.log(ingredientRecipe)
+          if (ingredientRecipe.ingredient === ingredient) {
+            ingredientIsPresent = true;
+          }
+        });
+        if (!ingredientIsPresent) {
+          filter = true;
+        }
+      });
+    }
+    if (!filter) {
+      fRecipes.push(r);
+    }
+  });
+
+  const searchedRecipes = fRecipes;
+
+  return searchedRecipes;
 }
+
 
 // affichage des cartes
 function populateCards() {
