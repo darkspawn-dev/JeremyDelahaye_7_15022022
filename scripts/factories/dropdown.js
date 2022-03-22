@@ -149,7 +149,6 @@ export class Dropdown {
       );
     });
   }
-
   appendBadge(value) {
     // create badge with value & color
 
