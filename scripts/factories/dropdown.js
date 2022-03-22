@@ -135,7 +135,7 @@ export class Dropdown {
       button.style.display = "inline-block";
     });
 
-    const key = dropdown.querySelector("input");
+      const key = dropdown.querySelector("input");
     key.addEventListener("keyup", (e) => {
       this.populate(e.target.value);
       this.addEvents(this.dropdown);
@@ -145,8 +145,8 @@ export class Dropdown {
     const selectItem = dropdown.querySelectorAll("span.filter-element");
     selectItem.forEach((item) => {
       item.addEventListener("click", (e) =>
-        this.appendBadge(e.target.textContent)
-      );
+        this.appendBadge(e.target.textContent),
+             );
     });
   }
 
