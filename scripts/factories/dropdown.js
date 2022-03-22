@@ -1,17 +1,8 @@
 /* `Dropdown` est une classe qui crée un menu déroulant. Il a une méthode `render` qui
 crée le menu déroulant et une méthode `init` qui ajoute l'écouteur d'événement au menu
 déroulant. */
-export class 
-Dropdown {
-  constructor(
-    id,
-    items,
-    dataType,
-    badgeContainer,
-    filters,
-    populateCards,
-    color
-  ) {
+export class Dropdown {
+  constructor(id, items, dataType, badgeContainer, filters, populateCards, color) {
     this.id = id;
     this.items = items;
     this.dataType = dataType;

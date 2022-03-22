@@ -14,6 +14,9 @@ searchBar.addEventListener("keyup", (e) => {
 
 /* Filtrer les recettes en fonction des filtres. */
 function filteredRecipes() {
+let myJson = recipes
+let string = JSON.stringify(myJson);
+console.log(string)
 
   const fRecipes = [];
 
@@ -56,6 +59,8 @@ function filteredRecipes() {
 }
 
 
+
+
 /**
  * Il crée un objet RecipeCard pour chaque recette dans le tableau filteredRecipes et l'ajoute au DOM.
  */
@@ -71,9 +76,13 @@ function populateCards() {
   });
 }
 
-/* Création d'une liste déroulante pour chaque type de filtre. */
-function 
-initDropdowns(items) {
+
+/**
+ * Créez une liste déroulante pour chaque catégorie de filtres et remplissez les cartes avec les
+ * recettes qui correspondent aux filtres
+ * @param items - la liste des éléments à afficher dans la liste déroulante
+ */
+function initDropdowns(items) {
   const ingredientsList = extract(
     extract(recipes, "ingredients"),
     "ingredient"
@@ -117,7 +126,13 @@ initDropdowns(items) {
   ustensils.init(dropdownContainer);
 }
 
-/* Extraire les ingrédients et les ustensiles du tableau des recettes. */
+
+/**
+ * Étant donné une liste d'objets, extraire les valeurs uniques d'une clé donnée des objets
+ * @param l - La liste des objets dont extraire les valeurs.
+ * @param key - Clé à extraire du tableau d'objets.
+ * @returns Un tableau de chaînes.
+ */
 function extract(l, key) {
   const result = new Set();
   for (const element of l) {
@@ -134,7 +149,10 @@ function extract(l, key) {
   return [...result].sort();
 }
 
-/* Initialisation des filtres déroulants et des fiches. */
+
+/**
+ * Remplir les cartes avec les données de la base de données
+ */
 function init() {
   populateCards();
   initDropdowns();
