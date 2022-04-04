@@ -1,14 +1,6 @@
 
 export class Dropdown {
-  constructor(
-    id,
-    items,
-    dataType,
-    badgeContainer,
-    filters,
-    populateCards,
-    color
-  ) {
+  constructor(id, items, dataType, badgeContainer, filters, populateCards, color) {
     this.id = id;
     this.items = items;
     this.dataType = dataType;
@@ -42,7 +34,7 @@ export class Dropdown {
     const dropdown = document.createElement("div");
     dropdown.setAttribute("id", this.id);
     dropdown.setAttribute("class", "dropdown-filter");
-
+    
     const button = document.createElement("div");
     button.setAttribute("class", `dropdown-filter-button ${this.colorClass()}`);
     const p = document.createElement("p");
@@ -52,15 +44,12 @@ export class Dropdown {
 
     dropdown.appendChild(button);
 
-    const icon = document.createElement("span");
+    const icon = document.createElement("div");
     icon.setAttribute("class", "oi oi-chevron-bottom");
-    button.appendChild(icon);
+    p.appendChild(icon);
 
     const content = document.createElement("div");
-    content.setAttribute(
-      "class",
-      `dropdown-filter-content ${this.colorClass()}`
-    );
+    content.setAttribute("class",`dropdown-filter-content ${this.colorClass()}`);
     dropdown.appendChild(content);
 
     const searchBar = document.createElement("div");
@@ -71,7 +60,6 @@ export class Dropdown {
     input.setAttribute("type", "text");
     input.setAttribute("placeholder", `${this.input()}`);
     input.setAttribute("class", this.colorClass());
-
     searchBar.appendChild(input);
 
     const close = document.createElement("span");
@@ -145,10 +133,10 @@ export class Dropdown {
       const content = button.nextElementSibling;
       content.style.display = "inline-block";
     });
-    const close = dropdown.querySelector("span.dropdown-filter-content-close");
 
+    const close = dropdown.querySelector("span.dropdown-filter-content-close");
     close.addEventListener("click", function (e) {
-      // const span = this;
+      const span = this;
       const content = this.closest("div.dropdown-filter-content");
       content.style.display = "none";
 
@@ -156,7 +144,7 @@ export class Dropdown {
       button.style.display = "inline-block";
     });
 
-      const key = dropdown.querySelector("input");
+    const key = dropdown.querySelector("input");
     key.addEventListener("keyup", (e) => {
       this.populate(e.target.value);
       this.addEvents(this.dropdown);
@@ -169,6 +157,12 @@ export class Dropdown {
         this.appendBadge(e.target.textContent),
              );
     });
+
+    const closeItem = dropdown.querySelector("div.dropdown-filter-content-items");
+    closeItem.addEventListener("click", function (e) {
+      const closeContent = this.closest("div.dropdown-filter-content");
+      closeContent.style.display = "none"
+    })
   }
 
 /**
