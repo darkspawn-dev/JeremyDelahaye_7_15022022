@@ -1,4 +1,4 @@
-// creation de la class dropdown
+
 export class Dropdown {
   constructor(
     id,
@@ -19,7 +19,11 @@ export class Dropdown {
     this.populateCards = populateCards;
   }
 
-  // init les composants
+
+ /**
+  * Crée un menu déroulant et le remplit avec la liste des éléments
+  * @param container - L'élément DOM qui contiendra la liste déroulante.
+  */
   init(container) {
     const dropdown = this.render();
     this.dropdown = dropdown;
@@ -29,7 +33,11 @@ export class Dropdown {
     container.appendChild(dropdown);
   }
 
-  // creation des élements de la dropdown
+
+/**
+ * Créer un filtre déroulant avec un bouton et une liste d'éléments
+ * @returns Le filtre déroulant.
+ */
   render() {
     const dropdown = document.createElement("div");
     dropdown.setAttribute("id", this.id);
@@ -81,11 +89,20 @@ export class Dropdown {
     return dropdown;
   }
 
-  // création class pour le placeholder des input
+
+/**
+ * *Entrée :* Aucune
+ * @returns La méthode input() renvoie une chaîne utilisée comme invite pour l'utilisateur.
+ */
   input() {
     return `Rechercher un ${this.dataType}`;
   }
-  // création de la class color pour les filtres
+
+/**
+ * *Lorsque la couleur est rouge, renvoie la classe color__green. Lorsque la couleur est verte, renvoie
+ * la classe color__red. Sinon, retournez la classe color__default.*
+ * @returns Le nom de la classe.
+ */
   colorClass() {
     switch (this.color) {
       case "red":
@@ -97,7 +114,11 @@ export class Dropdown {
     }
   }
 
-  // function filtres bouton dropdowns
+  
+  /**
+   * Remplit la liste déroulante avec les éléments filtrés
+   * @param filter - Une chaîne qui sera utilisée pour filtrer les éléments dans la liste déroulante.
+   */
   populate(filter) {
     const items = this.items.filter((v) =>
       v.toLowerCase().match(filter ? filter.toLowerCase() : undefined)
@@ -150,9 +171,12 @@ export class Dropdown {
     });
   }
 
+/**
+ * Créez un badge avec la valeur et la couleur, ajoutez-le au conteneur de badges, ajoutez la valeur au
+ * tableau des filtres et enfin appelez la fonction populateCards
+ * @param value - La valeur du badge.
+ */
   appendBadge(value) {
-    // create badge with value & color
-
     const badge = document.createElement("span");
     badge.setAttribute("class", `badge badge-primary ${this.colorClass()}`);
     badge.textContent = value;

@@ -136,34 +136,27 @@ div.container-fluid {
 }
 .card-body {
   background: #e7e7e7;
-  display: flex;
+  /* display: flex;
   align-items: center;
-  /* flex-direction: column; */
+ flex-direction: column;
   flex-direction: row;
-  flex-wrap: wrap;
+  flex-wrap: wrap; */
   height: 178px;
 }
 
 .card-title {
-  width: 70%;
+  width: 90%;
   position: absolute;
+  display: flex;
+  justify-content: space-between;
   top: 55%;
 }
 
 .oi-clock {
   position: absolute;
-  right: 5.26%;
-  top: 55%;
-  bottom: 26.67%;
-  font-weight: 700;
-  font-size: 13px;
-  font-weight: 700;
+  right: 15.26%;
 }
 
-.span .oi-clock {
-  display: block;
-  padding-bottom: 20px;
-}
 .ingredients-list {
   font-family: Lato;
   font-style: normal;
@@ -183,11 +176,9 @@ div.container-fluid {
   right: 4.74%;
   top: 60%;
   font-size: 12px;
-  line-height: 100%;
-  /* /* overflow: hidden;
- text-overflow: ellipsis;
-  white-space: pre-wrap;
-  white-space: ; */
+  /* overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap; */
 }
 
 /********************** dropdown ***************/
