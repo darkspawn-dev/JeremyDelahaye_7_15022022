@@ -160,8 +160,12 @@ export class Dropdown {
 
     const closeItem = dropdown.querySelector("div.dropdown-filter-content-items");
     closeItem.addEventListener("click", function (e) {
-      const closeContent = this.closest("div.dropdown-filter-content");
-      closeContent.style.display = "none"
+      const span = this;
+      const content = this.closest("div.dropdown-filter-content");
+      content.style.display = "none";
+
+      const button = content.previousElementSibling;
+      button.style.display = "inline-block";
     })
   }
 
