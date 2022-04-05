@@ -117,7 +117,7 @@ button {
 } */
 div.container-fluid {
   position: absolute;
-  top: 60%;
+  top: 50%;
   display: flex;
   flex-wrap: wrap;
   gap: 70px;

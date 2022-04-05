@@ -1,4 +1,5 @@
-// creation de la class card
+
+/* Il crée une carte avec le titre, les ingrédients, la description et la durée de la recette. */
 export class RecipeCard {
   constructor(title, ingredients, description, duration) {
     this.title = title;
@@ -6,7 +7,11 @@ export class RecipeCard {
     this.description = description;
     this.duration = duration;
   }
-// creation des élements cards
+
+/**
+ * Créer une carte avec une image, un titre, une durée, une liste d'ingrédients et une description
+ * @returns L'élément carte.
+ */
   render() {
     const card = document.createElement("div");
     card.setAttribute("class", "card");
@@ -24,9 +29,13 @@ export class RecipeCard {
     h5.textContent = this.title;
     cardBody.appendChild(h5);
 
-    const duration = document.createElement("span");
-    duration.setAttribute("class", "oi oi-clock");
-    cardBody.appendChild(duration);
+    const clock = document.createElement("span");
+    clock.setAttribute("class", "oi oi-clock");
+    h5.appendChild(clock)
+
+    const duration = document.createElement("p");
+    duration.setAttribute("class", "duration");
+    h5.appendChild(duration);
     duration.textContent = ` ${this.duration} min`;
 
     const ingredients = document.createElement("div");
