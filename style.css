@@ -282,19 +282,70 @@ input {
 }
 
 /******************* Responsive *******************/
-@media screen and (max-width:375px) {
-header {
-margin-left: 250px;
-}
-
-.form-group {
-display: flex;
-justify-content: center;
-}
-
-div.container-fluid {
+@media screen and (min-width: 390px) and (max-width: 911px) {
+main {
   display: flex;
-  flex-wrap: wrap;
+  justify-content: center;
+  flex-direction: column;
+}
+#dropdown {
+  flex-direction: column;
+}
+
+
+#cards {
+  flex-direction: column;
+  justify-content: center;
+  margin-left: -2px;
+  margin-top: 100px;
+}
+
+
+.card {
   width: 100%;
+  height: 364px;
+}
+
+.card-img-top {
+  background: #c7bebe;
+  height: 178px;
+}
+.card-body {
+  background: #e7e7e7;
+  /* display: flex;
+  align-items: center;
+ flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap; */
+  height: 178px;
+}
+
+.card-title {
+  width: 90%;
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  top: 55%;
+}
+
+#dropdown-filters {
+  display: flex;
+  z-index: 1;
+  flex-direction: column;
+  margin-top: 50px;
+  width: 90%;
+}
+
+
+.oi-magnifying-glass {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  top: 30px;
+}
+
+#searchbar{
+  display: flex;
+  margin-left: -40px;
 }
 }
