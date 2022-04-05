@@ -5,19 +5,24 @@ import { Dropdown } from "./scripts/factories/dropdown.js";
 let search = null;
 const filters = {};
 
-// addEvent listener on searchBar
+/* Ajout d'un écouteur d'événement sur la barre de recherche. Lorsque l'utilisateur tape dans la barre
+de recherche, la fonction "populateCards" est appelée. */
 const searchBar = document.getElementById("searchBar");
 searchBar.addEventListener("keyup", (e) => {
   search = e.target.value;
   populateCards();
 });
 
+/**
+ * La fonction filtre le tableau des recettes en vérifiant si la recette est présente dans le tableau
+ * des filtres
+ * @returns Les recettes filtrées.
+ */
 function filteredRecipes() {
   // search should filter on title, description, ingredient
   // filters should filter on target property
 
   const fRecipes = [];
-// recherche via tags
   for (const r of recipes) {
     let filter = false;
     for (const ingredient of filters.ingredients) {
@@ -55,7 +60,9 @@ function filteredRecipes() {
       }
     }
 
-    // recherche via la barre de recherche ( title, description, ingredient)
+
+/* Il s'agit d'une expression régulière qui recherchera le terme de recherche dans le nom, la
+description et les ingrédients de la recette. */
     if (search && search.length >= 3) {
       const reg = new RegExp(search, 'i')
       let ingredientMatch = false;
@@ -75,13 +82,14 @@ function filteredRecipes() {
     }
     if (!filter) {
       fRecipes.push(r);
-    }
+    } 
   }
-
   return fRecipes;
 }
 
-// affichage des cartes
+/**
+ * Il crée un objet RecipeCard pour chaque recette dans le tableau filteredRecipes et l'ajoute au DOM.
+ */
 function populateCards() {
   // for each recipe, instantiate, recipe card class
   const cardContainer = document.getElementById("cards");
@@ -94,7 +102,12 @@ function populateCards() {
   });
 }
 
-// affichage des dropdowns
+
+/**
+ * Créez une liste déroulante pour chaque catégorie de filtres et remplissez les cartes avec les
+ * recettes qui correspondent aux filtres
+ * @param items - la liste des éléments à afficher dans la liste déroulante
+ */
 function initDropdowns(items) {
   const ingredientsList = extract(
     extract(recipes, "ingredients"),
@@ -140,7 +153,13 @@ function initDropdowns(items) {
   ustensils.init(dropdownContainer);
 }
 
-// affichage de la liste des items dropdowns
+
+/**
+ * Étant donné une liste d'objets, extraire les valeurs uniques d'une clé donnée des objets
+ * @param l - La liste des objets dont extraire les valeurs.
+ * @param key - Clé à extraire du tableau.
+ * @returns Une liste de toutes les valeurs uniques dans le champ `key` de la liste `l`.
+ */
 function extract(l, key) {
   const result = new Set();
   for (const element of l) {
@@ -157,6 +176,9 @@ function extract(l, key) {
   return [...result].sort();
 }
 
+/**
+ * Initialiser les menus déroulants et remplir les fiches
+ */
 function init() {
   initDropdowns();
   populateCards();
