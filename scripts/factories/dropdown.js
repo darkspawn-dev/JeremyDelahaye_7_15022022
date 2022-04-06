@@ -1,6 +1,4 @@
-/* `Dropdown` est une classe qui crée un menu déroulant. Il a une méthode `render` qui
-crée le menu déroulant et une méthode `init` qui ajoute l'écouteur d'événement au menu
-déroulant. */
+
 export class Dropdown {
   constructor(id, items, dataType, badgeContainer, filters, populateCards, color) {
     this.id = id;
@@ -13,8 +11,11 @@ export class Dropdown {
     this.populateCards = populateCards;
   }
 
-  // init les composants
-  /* `init` crée le menu déroulant et ajoute l'écouteur d'événements au menu déroulant. */
+
+ /**
+  * Crée un menu déroulant et le remplit avec la liste des éléments
+  * @param container - L'élément DOM qui contiendra la liste déroulante.
+  */
   init(container) {
     const dropdown = this.render();
     this.dropdown = dropdown;
@@ -24,13 +25,16 @@ export class Dropdown {
     container.appendChild(dropdown);
   }
 
-  
-  /* `render` crée le menu déroulant. */
+
+/**
+ * Créer un filtre déroulant avec un bouton et une liste d'éléments
+ * @returns Le filtre déroulant.
+ */
   render() {
     const dropdown = document.createElement("div");
     dropdown.setAttribute("id", this.id);
     dropdown.setAttribute("class", "dropdown-filter");
-
+    
     const button = document.createElement("div");
     button.setAttribute("class", `dropdown-filter-button ${this.colorClass()}`);
     const p = document.createElement("p");
@@ -40,15 +44,12 @@ export class Dropdown {
 
     dropdown.appendChild(button);
 
-    const icon = document.createElement("span");
+    const icon = document.createElement("div");
     icon.setAttribute("class", "oi oi-chevron-bottom");
-    button.appendChild(icon);
+    p.appendChild(icon);
 
     const content = document.createElement("div");
-    content.setAttribute(
-      "class",
-      `dropdown-filter-content ${this.colorClass()}`
-    );
+    content.setAttribute("class",`dropdown-filter-content ${this.colorClass()}`);
     dropdown.appendChild(content);
 
     const searchBar = document.createElement("div");
@@ -59,7 +60,6 @@ export class Dropdown {
     input.setAttribute("type", "text");
     input.setAttribute("placeholder", `${this.input()}`);
     input.setAttribute("class", this.colorClass());
-
     searchBar.appendChild(input);
 
     const close = document.createElement("span");
@@ -77,12 +77,20 @@ export class Dropdown {
     return dropdown;
   }
 
-  // création class pour le placeholder des input
+
+/**
+ * *Entrée :* Aucune
+ * @returns La méthode input() renvoie une chaîne utilisée comme invite pour l'utilisateur.
+ */
   input() {
     return `Rechercher un ${this.dataType}`;
   }
 
-  /* `colorClass` crée une classe pour la couleur du filtre. */
+/**
+ * *Lorsque la couleur est rouge, renvoie la classe color__green. Lorsque la couleur est verte, renvoie
+ * la classe color__red. Sinon, retournez la classe color__default.*
+ * @returns Le nom de la classe.
+ */
   colorClass() {
     switch (this.color) {
       case "red":
@@ -94,9 +102,11 @@ export class Dropdown {
     }
   }
 
-
-  /* `populate` est une fonction qui filtre les éléments du menu déroulant en fonction de l'entrée de
-  l'utilisateur. */
+  
+  /**
+   * Remplit la liste déroulante avec les éléments filtrés
+   * @param filter - Une chaîne qui sera utilisée pour filtrer les éléments dans la liste déroulante.
+   */
   populate(filter) {
     const items = this.items.filter((v) =>
       v.toLowerCase().match(filter ? filter.toLowerCase() : undefined)
@@ -123,10 +133,10 @@ export class Dropdown {
       const content = button.nextElementSibling;
       content.style.display = "inline-block";
     });
-    const close = dropdown.querySelector("span.dropdown-filter-content-close");
 
+    const close = dropdown.querySelector("span.dropdown-filter-content-close");
     close.addEventListener("click", function (e) {
-      // const span = this;
+      const span = this;
       const content = this.closest("div.dropdown-filter-content");
       content.style.display = "none";
 
@@ -144,14 +154,27 @@ export class Dropdown {
     const selectItem = dropdown.querySelectorAll("span.filter-element");
     selectItem.forEach((item) => {
       item.addEventListener("click", (e) =>
-        this.appendBadge(e.target.textContent)
-      );
+        this.appendBadge(e.target.textContent),
+             );
     });
+
+    const closeItem = dropdown.querySelector("div.dropdown-filter-content-items");
+    closeItem.addEventListener("click", function (e) {
+      const span = this;
+      const content = this.closest("div.dropdown-filter-content");
+      content.style.display = "none";
+
+      const button = content.previousElementSibling;
+      button.style.display = "inline-block";
+    })
   }
 
+/**
+ * Créez un badge avec la valeur et la couleur, ajoutez-le au conteneur de badges, ajoutez la valeur au
+ * tableau des filtres et enfin appelez la fonction populateCards
+ * @param value - La valeur du badge.
+ */
   appendBadge(value) {
-    // create badge with value & color
-
     const badge = document.createElement("span");
     badge.setAttribute("class", `badge badge-primary ${this.colorClass()}`);
     badge.textContent = value;
