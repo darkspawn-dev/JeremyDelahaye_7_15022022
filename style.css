@@ -173,14 +173,16 @@ div.container-fluid {
   font-family: Roboto;
   font-weight: 400;
   width: 200px;
-  height: 120px;
+  max-height: 140px;
   left: 52%;
   right: 4.74%;
   top: 60%;
   font-size: 12px;
-  /* overflow: hidden;
+  overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap; */
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
 }
 
 /********************** dropdown ***************/
