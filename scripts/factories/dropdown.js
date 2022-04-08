@@ -1,14 +1,14 @@
-
 export class Dropdown {
-  constructor(id, items, dataType, badgeContainer, filters, populateCards, color) {
+  constructor(id, items, dataType, badgeContainer, filters, changeCallback, title,color) {
     this.id = id;
     this.items = items;
     this.dataType = dataType;
+    this.title = title;
     this.color = color;
     this.badgeContainer = badgeContainer;
     filters[dataType] = [];
     this.filters = filters;
-    this.populateCards = populateCards;
+    this.changeCallback = changeCallback;
   }
 
 
@@ -39,7 +39,7 @@ export class Dropdown {
     button.setAttribute("class", `dropdown-filter-button ${this.colorClass()}`);
     const p = document.createElement("p");
     p.setAttribute("class", "dropdownTitle")
-    p.textContent = this.dataType;
+    p.textContent = this.title;
     button.appendChild(p);
 
     dropdown.appendChild(button);
@@ -102,11 +102,6 @@ export class Dropdown {
     }
   }
 
-  
-  /**
-   * Remplit la liste déroulante avec les éléments filtrés
-   * @param filter - Une chaîne qui sera utilisée pour filtrer les éléments dans la liste déroulante.
-   */
   populate(filter) {
     const items = this.items.filter((v) =>
       v.toLowerCase().match(filter ? filter.toLowerCase() : undefined)
@@ -123,7 +118,6 @@ export class Dropdown {
     }
   }
 
-  //addEventlistener des bouton dropdowns
   addEvents(dropdown) {
     const filterButton = dropdown.querySelector("div.dropdown-filter-button");
     filterButton.addEventListener("click", function () {
@@ -171,7 +165,7 @@ export class Dropdown {
 
 /**
  * Créez un badge avec la valeur et la couleur, ajoutez-le au conteneur de badges, ajoutez la valeur au
- * tableau des filtres et enfin appelez la fonction populateCards
+ * tableau des filtres et enfin appelez la fonction changeCallback
  * @param value - La valeur du badge.
  */
   appendBadge(value) {
@@ -191,9 +185,15 @@ export class Dropdown {
       this.filters[this.dataType] = this.filters[this.dataType].filter(
         (i) => i !== value
       );
-      this.populateCards();
+      this.changeCallback();
     });
 
-    this.populateCards();
+    this.changeCallback();
+  }
+
+  updateItems(items){
+
+      this.items = items
+      this.populate()
   }
 }

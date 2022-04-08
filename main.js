@@ -5,6 +5,9 @@ import { Dropdown } from "./scripts/factories/dropdown.js";
 let search = null;
 const filters = {};
 
+const filterRecipes = [];
+const searchRecipes = [];
+
 /* Ajout d'un écouteur d'événement sur la barre de recherche. Lorsque l'utilisateur tape dans la barre
 de recherche, la fonction "populateCards" est appelée. */
 const searchBar = document.getElementById("searchBar");
@@ -59,34 +62,39 @@ function filteredRecipes() {
         filter = true;
       }
     }
-
-
-/* Il s'agit d'une expression régulière qui recherchera le terme de recherche dans le nom, la
-description et les ingrédients de la recette. */
-    if (search && search.length >= 3) {
-      const reg = new RegExp(search, 'i')
-      let ingredientMatch = false;
-      for (const ingredient of r.ingredients) {
-        if (ingredient.ingredient.match(reg)) {
-          ingredientMatch = true;
-        }
-      }
-
-      if (
-        !ingredientMatch &&
-        !r.description.match(reg) &&
-        !r.name.match(reg)
-      ) {
-        filter = true;
-      }
-    }
     if (!filter) {
       fRecipes.push(r);
-    } 
+    }
   }
-  return fRecipes;
+  return fRecipes
 }
+function searchedRecipes(filterRecipes) {
+  const sRecipes = [];
+  for (const r of filterRecipes) {
+    let filter = false;
+  if (search && search.length >= 3) {
+    const reg = new RegExp(search, 'i')
+    let ingredientMatch = false;
+    for (const ingredient of r.ingredients) {
+      if (ingredient.ingredient.match(reg)) {
+        ingredientMatch = true;
+      }
+    }
 
+    if (
+      !ingredientMatch &&
+      !r.description.match(reg) &&
+      !r.name.match(reg)
+    ) {
+      filter = true;
+    }
+  }
+  if (!filter) {
+    sRecipes.push(r);
+  } 
+}
+return sRecipes;
+}
 /**
  * Il crée un objet RecipeCard pour chaque recette dans le tableau filteredRecipes et l'ajoute au DOM.
  */
@@ -94,7 +102,11 @@ function populateCards() {
   // for each recipe, instantiate, recipe card class
   const cardContainer = document.getElementById("cards");
   cardContainer.textContent = "";
-  filteredRecipes().forEach((r) => {
+ 
+   const filterRecipes = filteredRecipes();
+   const searchRecipes = searchedRecipes(filterRecipes);
+
+  searchRecipes.forEach((r) => {
     const { name, ingredients, description, time } = r;
     const card = new RecipeCard(name, ingredients, description, time).render();
     // append cards to dom
