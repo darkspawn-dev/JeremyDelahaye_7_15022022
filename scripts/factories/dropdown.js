@@ -1,3 +1,4 @@
+/* Cette classe est un menu déroulant qui peut être utilisé pour filtrer les données. */
 export class Dropdown {
   constructor(id, items, dataType, badgeContainer, filters, changeCallback, title,color) {
     this.id = id;

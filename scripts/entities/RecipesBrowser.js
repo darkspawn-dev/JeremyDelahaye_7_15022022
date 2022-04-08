@@ -1,6 +1,12 @@
-import { extract } from "../utils.js";
-import { RecipeCard } from "../factories/recipe-card.js";
-import { Dropdown } from "../factories/dropdown.js";
+import {
+    extract
+} from "../utils.js";
+import {
+    RecipeCard
+} from "../factories/recipe-card.js";
+import {
+    Dropdown
+} from "../factories/dropdown.js";
 
 export class RecipesBrowser {
     constructor(recipes) {
@@ -24,12 +30,12 @@ export class RecipesBrowser {
         this.populateDropdowns(this.filteredRecipes);
     }
 
-/**
- * Si le terme de recherche comporte au moins 3 caractères, recherchez les recettes et remplissez les
- * cartes et les listes déroulantes avec les résultats. Sinon, remplissez les cartes et les listes
- * déroulantes avec les recettes filtrées.
- * @param term - le terme de recherche
- */
+    /**
+     * Si le terme de recherche comporte au moins 3 caractères, recherchez les recettes et remplissez les
+     * cartes et les listes déroulantes avec les résultats. Sinon, remplissez les cartes et les listes
+     * déroulantes avec les recettes filtrées.
+     * @param term - le terme de recherche
+     */
     onSearchChange(term) {
         this.searchedRecipes = term.length >= 3 ? this.searchRecipes(this.filteredRecipes, term) : [...this.filteredRecipes];
         this.populateCards(this.searchedRecipes);
@@ -119,6 +125,11 @@ export class RecipesBrowser {
         });
     }
 
+/**
+ * Il prend une liste de recettes, extrait les ingrédients, les ustensiles et les appareils de chaque
+ * recette, puis met à jour les listes déroulantes avec les listes extraites
+ * @param recipes - un tableau d'objets
+ */
     populateDropdowns(recipes) {
         const ingredientsList = extract(
             extract(recipes, "ingredients"),
@@ -133,6 +144,13 @@ export class RecipesBrowser {
         this.applianceDropdown.updateItems(appareilsList);
     }
 
+ /**
+  * Il prend un tableau de recettes et un objet de filtres, et renvoie un tableau de recettes qui
+  * correspondent aux filtres.
+  * @param recipes - une panoplie de recettes
+  * @param filters - {
+  * @returns Un tableau de recettes qui correspondent aux filtres.
+  */
     filterRecipes(recipes, filters) {
         const fRecipes = [];
         for (const r of recipes) {
@@ -179,31 +197,23 @@ export class RecipesBrowser {
     }
 
     searchRecipes(recipes, search) {
-        const sRecipes = [];
-        for (const r of recipes) {
+        return recipes.filter((r) => {
             let filter = false;
-            if (search && search.length >= 3) {
-                const reg = new RegExp(search, 'i')
-                let ingredientMatch = false;
-                for (const ingredient of r.ingredients) {
-                    if (ingredient.ingredient.match(reg)) {
-                        ingredientMatch = true;
-                    }
-                }
 
-                if (
-                    !ingredientMatch &&
-                    !r.description.match(reg) &&
-                    !r.name.match(reg)
-                ) {
-                    filter = true;
-                }
+            const reg = new RegExp(search, 'i')
+            const ingredientMatch = r.ingredients.find((i) => i.ingredient.match(reg)) || false
+
+            if (
+                !ingredientMatch &&
+                !r.description.match(reg) &&
+                !r.name.match(reg)
+            ) {
+                filter = true;
             }
-            if (!filter) {
-                sRecipes.push(r);
-            }
-        }
-        return sRecipes;
+
+
+            return !filter
+        })
     }
 
 
