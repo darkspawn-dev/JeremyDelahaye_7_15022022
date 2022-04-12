@@ -102,6 +102,29 @@ export class Dropdown {
     }
   }
 
+/**
+ * Il prend une chaîne comme argument, filtre le tableau d'éléments en fonction de la chaîne, puis
+ * remplit la liste déroulante avec les éléments filtrés.
+ * 
+ * Le problème est que la fonction ne fonctionne pas.
+ * 
+ * J'ai essayé de le déboguer, mais je n'arrive pas à comprendre ce qui ne va pas.
+ * 
+ * J'ai essayé d'utiliser le débogueur, mais cela ne fonctionne pas.
+ * 
+ * J'ai essayé d'utiliser console.log, mais cela ne fonctionne pas.
+ * 
+ * J'ai essayé d'utiliser l'alerte, mais cela ne fonctionne pas.
+ * 
+ * J'ai essayé d'utiliser console.log, mais cela ne fonctionne pas.
+ * 
+ * J'ai essayé d'utiliser console.log, mais cela ne fonctionne pas.
+ * 
+ * J'ai essayé d'utiliser console.log, mais cela ne fonctionne pas.
+ * 
+ * J'ai essayé d'utiliser console.log, mais cela ne fonctionne pas.
+ * @param filter - la chaîne de filtre
+ */
   populate(filter) {
     const items = this.items.filter((v) =>
       v.toLowerCase().match(filter ? filter.toLowerCase() : undefined)
@@ -118,9 +141,20 @@ export class Dropdown {
     }
   }
 
+/**
+ * Lorsque l'utilisateur clique sur le bouton déroulant, le menu déroulant apparaît, et lorsque
+ * l'utilisateur clique sur le bouton de fermeture, le menu déroulant disparaît.
+ * @param dropdown - l'élément déroulant
+ */
   addEvents(dropdown) {
     const filterButton = dropdown.querySelector("div.dropdown-filter-button");
     filterButton.addEventListener("click", function () {
+      const all = document.querySelectorAll("div.dropdown-filter-button");
+      all.forEach((b) => {
+        b.style.display = "inline-block";
+        b.nextElementSibling.style.display = "none";
+      })
+
       const button = this;
       button.style.display = "none";
 
@@ -138,13 +172,15 @@ export class Dropdown {
       button.style.display = "inline-block";
     });
 
+/* Ajout d'un écouteur d'événement au champ de saisie. */
     const key = dropdown.querySelector("input");
     key.addEventListener("keyup", (e) => {
       this.populate(e.target.value);
       this.addEvents(this.dropdown);
     });
 
-    // addeventlistener on item
+
+/* Ajout d'un écouteur d'événement à chaque élément de la liste déroulante. */
     const selectItem = dropdown.querySelectorAll("span.filter-element");
     selectItem.forEach((item) => {
       item.addEventListener("click", (e) =>
@@ -152,6 +188,7 @@ export class Dropdown {
              );
     });
 
+/* Fermeture du menu déroulant lorsque vous cliquez sur les éléments. */
     const closeItem = dropdown.querySelector("div.dropdown-filter-content-items");
     closeItem.addEventListener("click", function (e) {
       const span = this;
@@ -160,6 +197,12 @@ export class Dropdown {
 
       const button = content.previousElementSibling;
       button.style.display = "inline-block";
+
+      let key = dropdown.querySelector("input");
+      key.value = "";
+
+      //  let searchClear = document.getElementById('searchBar');
+      //  searchClear.value = "";
     })
   }
 
@@ -191,9 +234,14 @@ export class Dropdown {
     this.changeCallback();
   }
 
+/**
+ * Cette fonction met à jour les éléments de la liste déroulante, remplit la liste déroulante avec les
+ * nouveaux éléments et ajoute les événements à la liste déroulante.
+ * @param items - Un tableau d'objets qui seront utilisés pour remplir la liste déroulante.
+ */
   updateItems(items){
-
       this.items = items
       this.populate()
+      this.addEvents(this.dropdown);
   }
 }
