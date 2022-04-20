@@ -104,6 +104,10 @@ button {
   height: 69px;
 }
 
+#error-message {
+  font-size: 24px;
+  text-align: center;
+}
 /* #cards {
   position: absolute;
   top: 45%;

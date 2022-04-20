@@ -17,6 +17,10 @@ searchBar.addEventListener("keyup", (e) => {
 });
 
 
+/**
+ * Il renvoie un tableau de recettes qui correspondent aux filtres et aux critères de recherche.
+ * @returns Un tableau de recettes qui correspondent aux filtres.
+ */
 function filteredRecipes() {
   return recipes.filter((r) => {
     let filter = false;
@@ -72,11 +76,8 @@ function filteredRecipes() {
   })
 }
 
-
-
-
 /**
- * Il crée un objet RecipeCard pour chaque recette dans le tableau filteredRecipes et l'ajoute au DOM.
+ * Il crée une nouvelle carte pour chaque recette dans le tableau filteredRecipes et l'ajoute au DOM
  */
 function populateCards() {
   // for each recipe, instantiate, recipe card class
@@ -93,6 +94,11 @@ function populateCards() {
     // append cards to dom
     cardContainer.appendChild(card);
   });
+  if (cardContainer.textContent === "") {
+    cardContainer.innerHTML = `<p id = "error-message" >
+« Aucune recette ne correspond à votre critère... vous pouvez
+chercher « tarte aux pommes », « poisson », etc.</p>`
+}
 }
 
 
