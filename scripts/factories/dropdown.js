@@ -127,6 +127,12 @@ export class Dropdown {
   addEvents(dropdown) {
     const filterButton = dropdown.querySelector("div.dropdown-filter-button");
     filterButton.addEventListener("click", function () {
+      const all = document.querySelectorAll("div.dropdown-filter-button");
+      all.forEach((b) => {
+        b.style.display = "inline-block";
+        b.nextElementSibling.style.display = "none";
+      })
+
       const button = this;
       button.style.display = "none";
 

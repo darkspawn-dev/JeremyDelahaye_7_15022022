@@ -115,17 +115,18 @@ function initDropdowns(items) {
   const ingredientDropdown = new Dropdown(
     "ingredient-dropdown",
     ingredientsList,
-    "ingredients",
+    "Ingredients",
     badgeContainer,
     filters,
     populateCards
+
   );
   ingredientDropdown.init(dropdownContainer);
 
   const applianceDropdown = new Dropdown(
     "appliance-dropdown",
     appareilsList,
-    "appliance",
+    "Appareils",
     badgeContainer,
     filters,
     populateCards,
@@ -136,7 +137,7 @@ function initDropdowns(items) {
   const ustensils = new Dropdown(
     "ustensils-dropdown",
     ustensilsList,
-    "ustensils",
+    "Ustensiles",
     badgeContainer,
     filters,
     populateCards,
