@@ -293,15 +293,10 @@ main {
 #dropdown {
   flex-direction: column;
 }
-.ingredients-list {
-  font-family: Lato;
-  font-style: normal;
-  font-weight: 700;
-  font-size: 12px;
-  line-height: 1px;
-}
-ul {
-  top: 63%;
+
+
+.description {
+  width: 40%;
 }
 #cards {
   flex-direction: column;
@@ -310,16 +305,10 @@ ul {
   margin-top: 100px;
 }
 
-div.description {
-  width: 40%;
-  margin-left: 20px;
-}
-
 .card {
   width: 100%;
   height: 364px;
 }
-
 
 .card-img-top {
   background: #c7bebe;
@@ -351,16 +340,33 @@ div.description {
   width: 90%;
 }
 
-
 .oi-magnifying-glass {
-  position: relative;
-  width: 20px;
-  height: 20px;
-  top: 30px;
+  display: none;
+  }
+  
+  .form-group {
+    width:44%;
+  }
+  
+  .form-control{
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }
 
-#searchbar{
-  display: flex;
-  margin-left: -40px;
-}
+@media screen and (min-width: 912px) and (max-width: 1440px) {
+  .description {
+    width: 45%;
+    margin-left: 8px;
+  }
+  .oi-clock {
+    position: absolute;
+    right: 13.80%;
+  }
+  .form-group {
+    width: 98%;
+  }
+  h5 {
+    font-size: 13px;
+  }
 }
