@@ -1,7 +1,30 @@
-import { extract } from "../utils.js";
-import { RecipeCard } from "../factories/recipe-card.js";
-import { Dropdown } from "../factories/dropdown.js";
+import {
+    extract
+} from "../utils.js";
+import {
+    RecipeCard
+} from "../factories/recipe-card.js";
+import {
+    Dropdown
+} from "../factories/dropdown.js";
 
+/* "La classe RecipesBrowser est une classe qui prend une liste de recettes et permet à l'utilisateur
+de les filtrer et de les parcourir."
+
+La classe a un constructeur qui prend une liste de recettes et initialise quelques propriétés :
+
+this.recipesDB - la liste des recettes
+this.filters - un objet qui contient les filtres
+this.filteredRecipes - une liste de recettes qui ont été filtrées
+this.searchedRecipes - une liste de recettes qui ont été recherchées
+La classe a quelques méthodes :
+
+init() - initialise la barre de recherche, les listes déroulantes et les cartes
+onDropdownChange() - filtre les recettes, remplit les cartes et remplit les listes déroulantes
+onSearchChange() - recherche les recettes, remplit les cartes et remplit les listes déroulantes
+initSearchBar() - initialise la barre de recherche
+initDropdowns() - crée une liste déroulante pour chaque catégorie de filtre et remplit les cartes
+avec */
 export class RecipesBrowser {
     constructor(recipes) {
         this.recipesDB = recipes;
@@ -10,9 +33,9 @@ export class RecipesBrowser {
         this.searchedRecipes = [];
     }
 
-/**
- * Cette fonction initialise la barre de recherche, les listes déroulantes et les cartes.
- */
+    /**
+     * Cette fonction initialise la barre de recherche, les listes déroulantes et les cartes.
+     */
     init() {
         this.filteredRecipes = [...this.recipesDB];
         this.searchedRecipes = [...this.recipesDB];
@@ -21,56 +44,56 @@ export class RecipesBrowser {
         this.populateCards(this.recipesDB);
     }
 
-/**
- * "Lorsque la liste déroulante change, filtrez les recettes, remplissez les cartes et remplissez les
- * listes déroulantes."
- * 
- * La fonction est appelée lorsque la liste déroulante change.
- * 
- * La fonction filtre les recettes en fonction des filtres.
- * 
- * La fonction remplit les fiches en fonction des recettes filtrées.
- * 
- * La fonction remplit les listes déroulantes en fonction des recettes filtrées.
- * 
- * La fonction est appelée lorsque la liste déroulante change.
- * 
- * La fonction filtre les recettes en fonction des filtres.
- * 
- * La fonction remplit les fiches en fonction des recettes filtrées.
- * 
- * La fonction remplit les listes déroulantes en fonction des recettes filtrées.
- * 
- * La fonction est appelée lorsque la liste déroulante change.
- * 
- * La fonction filtre les recettes en fonction des filtres.
- * 
- * La fonction remplit les fiches en fonction des recettes filtrées.
- * 
- * La fonction renseigne
- */
+    /**
+     * "Lorsque la liste déroulante change, filtrez les recettes, remplissez les cartes et remplissez les
+     * listes déroulantes."
+     * 
+     * La fonction est appelée lorsque la liste déroulante change.
+     * 
+     * La fonction filtre les recettes en fonction des filtres.
+     * 
+     * La fonction remplit les fiches en fonction des recettes filtrées.
+     * 
+     * La fonction remplit les listes déroulantes en fonction des recettes filtrées.
+     * 
+     * La fonction est appelée lorsque la liste déroulante change.
+     * 
+     * La fonction filtre les recettes en fonction des filtres.
+     * 
+     * La fonction remplit les fiches en fonction des recettes filtrées.
+     * 
+     * La fonction remplit les listes déroulantes en fonction des recettes filtrées.
+     * 
+     * La fonction est appelée lorsque la liste déroulante change.
+     * 
+     * La fonction filtre les recettes en fonction des filtres.
+     * 
+     * La fonction remplit les fiches en fonction des recettes filtrées.
+     * 
+     * La fonction renseigne
+     */
     onDropdownChange() {
         this.filteredRecipes = this.filterRecipes(this.searchedRecipes, this.filters);
         this.populateCards(this.filteredRecipes);
         this.populateDropdowns(this.filteredRecipes);
     }
 
-/**
- * Si le terme de recherche comporte au moins 3 caractères, recherchez les recettes et remplissez les
- * cartes et les listes déroulantes avec les résultats. Sinon, remplissez les cartes et les listes
- * déroulantes avec les recettes filtrées.
- * @param term - le terme de recherche
- */
+    /**
+     * Si le terme de recherche comporte au moins 3 caractères, recherchez les recettes et remplissez les
+     * cartes et les listes déroulantes avec les résultats. Sinon, remplissez les cartes et les listes
+     * déroulantes avec les recettes filtrées.
+     * @param term - le terme de recherche
+     */
     onSearchChange(term) {
         this.searchedRecipes = term.length >= 3 ? this.searchRecipes(this.filteredRecipes, term) : [...this.filteredRecipes];
         this.populateCards(this.searchedRecipes);
         this.populateDropdowns(this.searchedRecipes);
     }
 
- /**
-  * Lorsque l'utilisateur tape dans la barre de recherche, la fonction onSearchChange est appelée avec
-  * la valeur de la barre de recherche comme argument.
-  */
+    /**
+     * Lorsque l'utilisateur tape dans la barre de recherche, la fonction onSearchChange est appelée avec
+     * la valeur de la barre de recherche comme argument.
+     */
     initSearchBar() {
         const searchBar = document.getElementById("searchBar");
         searchBar.value = ""
@@ -91,7 +114,7 @@ export class RecipesBrowser {
             extract(recipes, "ingredients"),
             "ingredient"
         );
-        
+
         const ustensilsList = extract(recipes, "ustensils");
 
         const appareilsList = extract(recipes, "appliance");
@@ -139,10 +162,14 @@ export class RecipesBrowser {
         this.applianceDropdown = applianceDropdown;
     }
 
-  /**
-   * Pour chaque recette, instanciez une classe de carte de recette et ajoutez les cartes au DOM.
-   * @param recipes - un tableau d'objets
-   */
+
+/**
+ * Il prend un tableau de recettes et pour chaque recette, il crée une nouvelle instance de la classe
+ * RecipeCard, puis ajoute la carte au DOM.
+ * 
+ * La classe RecipeCard est définie dans le même fichier et ressemble à ceci :
+ * @param recipes - un tableau d'objets
+ */
     populateCards(recipes) {
         // for each recipe, instantiate, recipe card class
         const cardContainer = document.getElementById("cards");
@@ -158,13 +185,18 @@ export class RecipesBrowser {
             // append cards to dom
             cardContainer.appendChild(card);
         })
+        if (cardContainer.textContent === "") {
+            cardContainer.innerHTML = `<p id = "error-message" >
+        « Aucune recette ne correspond à votre critère... vous pouvez
+        chercher « tarte aux pommes », « poisson », etc.</p>`
+        }
     }
 
-    errorMessage() {
-       let cardContainer = document.getElementById("cards");
-           cardContainer = `"Aucune recette ne correspond à votre critère ... vous pouvez chercher"tarte aux pommes", "poisson" etc.."`   
-      };
-
+/**
+ * Il prend une liste de recettes, extrait les ingrédients et les ustensiles de chaque recette, puis
+ * met à jour les listes déroulantes avec les ingrédients et les ustensiles extraits
+ * @param recipes - un tableau d'objets, chaque objet est une recette
+ */
     populateDropdowns(recipes) {
         const ingredientsList = extract(
             extract(recipes, "ingredients"),
@@ -179,33 +211,33 @@ export class RecipesBrowser {
         this.applianceDropdown.updateItems(appareilsList);
     }
 
-/**
- * Il prend une liste de recettes et une liste de filtres, et renvoie une liste de recettes qui
- * correspondent aux filtres.
- * 
- * La fonction est un peu longue, mais ce n'est pas trop compliqué. C'est juste un tas de boucles
- * imbriquées.
- * 
- * La première boucle parcourt les recettes.
- * 
- * La deuxième boucle itère sur les ingrédients dans les filtres.
- * 
- * La troisième boucle parcourt les ingrédients de la recette.
- * 
- * La quatrième boucle itère sur les ustensiles dans les filtres.
- * 
- * La cinquième boucle parcourt les ustensiles de la recette.
- * 
- * La sixième boucle itère sur les appareils dans les filtres.
- * 
- * La septième boucle parcourt les appareils de la recette.
- * 
- * La fonction est un peu longue, mais ce n'est pas trop compliqué. C'est juste un tas de boucles
- * imbriquées.
- * @param recipes - une panoplie de recettes
- * @param filters - {
- * @returns Un tableau de recettes qui correspondent aux filtres.
- */
+    /**
+     * Il prend une liste de recettes et une liste de filtres, et renvoie une liste de recettes qui
+     * correspondent aux filtres.
+     * 
+     * La fonction est un peu longue, mais ce n'est pas trop compliqué. C'est juste un tas de boucles
+     * imbriquées.
+     * 
+     * La première boucle parcourt les recettes.
+     * 
+     * La deuxième boucle itère sur les ingrédients dans les filtres.
+     * 
+     * La troisième boucle parcourt les ingrédients de la recette.
+     * 
+     * La quatrième boucle itère sur les ustensiles dans les filtres.
+     * 
+     * La cinquième boucle parcourt les ustensiles de la recette.
+     * 
+     * La sixième boucle itère sur les appareils dans les filtres.
+     * 
+     * La septième boucle parcourt les appareils de la recette.
+     * 
+     * La fonction est un peu longue, mais ce n'est pas trop compliqué. C'est juste un tas de boucles
+     * imbriquées.
+     * @param recipes - une panoplie de recettes
+     * @param filters - {
+     * @returns Un tableau de recettes qui correspondent aux filtres.
+     */
     filterRecipes(recipes, filters) {
         const fRecipes = [];
         for (const r of recipes) {
@@ -251,13 +283,13 @@ export class RecipesBrowser {
         return fRecipes
     }
 
-/**
- * Il prend un tableau de recettes et une chaîne de recherche, et renvoie un tableau de recettes qui
- * correspondent à la chaîne de recherche
- * @param recipes - un tableau d'objets
- * @param search - le terme de recherche
- * @returns Un tableau de recettes qui correspondent aux critères de recherche.
- */
+    /**
+     * Il prend un tableau de recettes et une chaîne de recherche, et renvoie un tableau de recettes qui
+     * correspondent à la chaîne de recherche
+     * @param recipes - un tableau d'objets
+     * @param search - le terme de recherche
+     * @returns Un tableau de recettes qui correspondent aux critères de recherche.
+     */
     searchRecipes(recipes, search) {
         const sRecipes = [];
         for (const r of recipes) {
@@ -286,4 +318,3 @@ export class RecipesBrowser {
         return sRecipes;
     }
 }
-

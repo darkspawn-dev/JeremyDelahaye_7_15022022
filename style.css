@@ -103,7 +103,11 @@ button {
   width: 170px;
   height: 69px;
 }
-
+/************** Recipes Cards *****************/
+#error-message {
+  font-size: 24px;
+  text-align: center;
+}
 /* #cards {
   position: absolute;
   top: 45%;

@@ -1,3 +1,5 @@
+/* Il crée un menu déroulant avec une barre de recherche et une liste d'éléments. Lorsqu'un élément est
+cliqué, il crée un badge avec la valeur de l'élément et l'ajoute à un conteneur. */
 export class Dropdown {
   constructor(id, items, dataType, badgeContainer, filters, changeCallback, title,color) {
     this.id = id;
@@ -102,27 +104,10 @@ export class Dropdown {
     }
   }
 
+
 /**
  * Il prend une chaîne comme argument, filtre le tableau d'éléments en fonction de la chaîne, puis
  * remplit la liste déroulante avec les éléments filtrés.
- * 
- * Le problème est que la fonction ne fonctionne pas.
- * 
- * J'ai essayé de le déboguer, mais je n'arrive pas à comprendre ce qui ne va pas.
- * 
- * J'ai essayé d'utiliser le débogueur, mais cela ne fonctionne pas.
- * 
- * J'ai essayé d'utiliser console.log, mais cela ne fonctionne pas.
- * 
- * J'ai essayé d'utiliser l'alerte, mais cela ne fonctionne pas.
- * 
- * J'ai essayé d'utiliser console.log, mais cela ne fonctionne pas.
- * 
- * J'ai essayé d'utiliser console.log, mais cela ne fonctionne pas.
- * 
- * J'ai essayé d'utiliser console.log, mais cela ne fonctionne pas.
- * 
- * J'ai essayé d'utiliser console.log, mais cela ne fonctionne pas.
  * @param filter - la chaîne de filtre
  */
   populate(filter) {
@@ -200,9 +185,6 @@ export class Dropdown {
 
       let key = dropdown.querySelector("input");
       key.value = "";
-
-      //  let searchClear = document.getElementById('searchBar');
-      //  searchClear.value = "";
     })
   }
 
