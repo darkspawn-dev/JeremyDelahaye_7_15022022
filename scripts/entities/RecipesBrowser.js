@@ -85,9 +85,11 @@ export class RecipesBrowser {
      * @param term - le terme de recherche
      */
     onSearchChange(term) {
-        this.searchedRecipes = term.length >= 3 ? this.searchRecipes(this.filteredRecipes, term) : [...this.filteredRecipes];
-        this.populateCards(this.searchedRecipes);
-        this.populateDropdowns(this.searchedRecipes);
+        if(term.length >= 3) {
+            this.searchedRecipes = this.searchRecipes(this.filteredRecipes, term);
+            this.populateCards(this.searchedRecipes);
+            this.populateDropdowns(this.searchedRecipes);
+        }
     }
 
     /**
@@ -187,7 +189,7 @@ export class RecipesBrowser {
         })
         if (cardContainer.textContent === "") {
             cardContainer.innerHTML = `<p id = "error-message" >
-        « Aucune recette ne correspond à votre critère... vous pouvez
+         Aucune recette ne correspond à votre critère... vous pouvez
         chercher « tarte aux pommes », « poisson », etc.</p>`
         }
     }
@@ -290,11 +292,11 @@ export class RecipesBrowser {
      * @param search - le terme de recherche
      * @returns Un tableau de recettes qui correspondent aux critères de recherche.
      */
+    
     searchRecipes(recipes, search) {
         const sRecipes = [];
         for (const r of recipes) {
             let filter = false;
-            if (search && search.length >= 3) {
                 const reg = new RegExp(search, 'i')
                 let ingredientMatch = false;
                 for (const ingredient of r.ingredients) {
@@ -310,7 +312,6 @@ export class RecipesBrowser {
                 ) {
                     filter = true;
                 }
-            }
             if (!filter) {
                 sRecipes.push(r);
             }

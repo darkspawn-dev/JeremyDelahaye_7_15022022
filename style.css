@@ -53,10 +53,12 @@ main {
 /************** form(barre de recherche) *****************/
 .form-group {
   display: flex;
+  justify-content: center;
+  align-content: center;
   position: absolute;
-  margin-left: 115px;
+  margin-left: 120px;
   margin-top: 20px;
-  width: 94%;
+  width: 87%;
   height: 69px;
 }
 
@@ -65,15 +67,15 @@ main {
 }
 .oi-magnifying-glass {
   position: relative;
-  width: 150px;
+  width: 15px;
   height: 69px;
-  right: 50px;
+  right: 100px;
   top: 30px;
 }
 
 #searchBar {
   margin-left: -17px;
-  width: 100%;
+  width: 90%;
 
 }
 /************** filtres *****************/
@@ -123,10 +125,11 @@ div.container-fluid {
   position: absolute;
   top: 50%;
   display: flex;
+
   flex-wrap: wrap;
   gap: 70px;
   margin-left: 80px;
- width: 100%;
+ width: 90%;
 }
 .card {
   width: 27%;
@@ -298,7 +301,23 @@ main {
   flex-direction: column;
 }
 
-
+.dropdown-filter-content-close {
+padding-right: 5px;
+}
+div.dropdown-filter-content-searchbar {
+  display: flex;
+  justify-content: space-between;
+  width: 10%;
+  height: 30px;
+  margin-left: 20px;
+}
+div.dropdown-filter-content-items {
+  display: grid;
+  padding-top: 20px;
+  margin-left: 20px;
+  grid-template-columns: 50px 50px;
+  grid-column-gap: 60px;
+}
 .description {
   width: 40%;
 }
@@ -320,11 +339,6 @@ main {
 }
 .card-body {
   background: #e7e7e7;
-  /* display: flex;
-  align-items: center;
- flex-direction: column;
-  flex-direction: row;
-  flex-wrap: wrap; */
   height: 178px;
 }
 
@@ -341,7 +355,7 @@ main {
   z-index: 1;
   flex-direction: column;
   margin-top: 50px;
-  width: 90%;
+  width: 40%;
 }
 
 .oi-magnifying-glass {
@@ -368,9 +382,24 @@ main {
     right: 13.80%;
   }
   .form-group {
-    width: 98%;
+    width: 91%;
   }
+
   h5 {
     font-size: 13px;
+  }
+  div.container-fluid {
+    position: absolute;
+    top: 50%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 70px;
+    margin-left: 80px;
+   width: 91%;
+  }
+  main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
