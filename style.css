@@ -125,7 +125,9 @@ div.container-fluid {
   position: absolute;
   top: 50%;
   display: flex;
-
+  justify-content: center;
+  align-items: center;
+  align-content: center;
   flex-wrap: wrap;
   gap: 70px;
   margin-left: 80px;
@@ -197,7 +199,7 @@ div.container-fluid {
 #dropdown-filters {
   display: flex;
   z-index: 1;
-  margin-left: 98px;
+  margin-left: 9.5%;
   margin-top: 50px;
   gap: 20px;
   width: 90%;
@@ -315,12 +317,16 @@ div.dropdown-filter-content-items {
   display: grid;
   padding-top: 20px;
   margin-left: 20px;
-  grid-template-columns: 50px 50px;
+  grid-template-columns: 100%;
   grid-column-gap: 60px;
 }
 .description {
   width: 40%;
 }
+div.container-fluid {
+width: 100%;
+}
+
 #cards {
   flex-direction: column;
   justify-content: center;
@@ -353,9 +359,11 @@ div.dropdown-filter-content-items {
 #dropdown-filters {
   display: flex;
   z-index: 1;
+  align-items: center;
+  
   flex-direction: column;
   margin-top: 50px;
-  width: 40%;
+  width: 82%;
 }
 
 .oi-magnifying-glass {
@@ -393,6 +401,7 @@ div.dropdown-filter-content-items {
     top: 50%;
     display: flex;
     flex-wrap: wrap;
+
     gap: 70px;
     margin-left: 80px;
    width: 91%;
