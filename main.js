@@ -9,7 +9,9 @@ import {
 let search = null;
 const filters = {};
 
-// addEvent listener on searchBar
+
+/* En écoutant la barre de recherche et lorsque l'utilisateur tape quelque chose, il mettra à jour la
+variable de recherche et remplira les cartes. */
 const searchBar = document.getElementById("searchBar");
 searchBar.addEventListener("keyup", (e) => {
   search = e.target.value;
@@ -21,6 +23,7 @@ searchBar.addEventListener("keyup", (e) => {
  * Il renvoie un tableau de recettes qui correspondent aux filtres et aux critères de recherche.
  * @returns Un tableau de recettes qui correspondent aux filtres.
  */
+
 function filteredRecipes() {
   return recipes.filter((r) => {
     let filter = false;
@@ -79,6 +82,7 @@ function filteredRecipes() {
 /**
  * Il crée une nouvelle carte pour chaque recette dans le tableau filteredRecipes et l'ajoute au DOM
  */
+
 function populateCards() {
   // for each recipe, instantiate, recipe card class
   const cardContainer = document.getElementById("cards");
