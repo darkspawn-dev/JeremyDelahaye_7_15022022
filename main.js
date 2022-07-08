@@ -26,8 +26,10 @@ function filteredRecipes() {
   // filters should filter on target property
 
   const fRecipes = [];
+  /* Boucle dans le tableau des recettes. */
   for (const r of recipes) {
     let filter = false;
+/* Vérifier si l'ingrédient est présent dans la recette. */
     for (const ingredient of filters.ingredients) {
       let ingredientIsPresent = false;
       for (const ingredientRecipe of r.ingredients) {
@@ -62,14 +64,24 @@ function filteredRecipes() {
         filter = true;
       }
     }
+/* Pousser la recette vers le tableau filteredRecipes si elle passe le filtre. */
     if (!filter) {
       fRecipes.push(r);
     }
   }
+/* Renvoi des recettes filtrées. */
   return fRecipes
 }
+
+/**
+ * Il prend un tableau de recettes et renvoie un tableau de recettes qui correspondent aux critères de
+ * recherche.
+ * @param filterRecipes - un tableau d'objets contenant les recettes
+ * @returns Un tableau de recettes qui correspondent aux critères de recherche.
+ */
 function searchedRecipes(filterRecipes) {
   const sRecipes = [];
+  /* Filtrer les recettes en fonction des critères de recherche. */
   for (const r of filterRecipes) {
     let filter = false;
   if (search && search.length >= 3) {
@@ -81,6 +93,7 @@ function searchedRecipes(filterRecipes) {
       }
     }
 
+   /* Vérifier si le terme de recherche se trouve dans la description, le nom ou les ingrédients. */
     if (
       !ingredientMatch &&
       !r.description.match(reg) &&
@@ -89,6 +102,7 @@ function searchedRecipes(filterRecipes) {
       filter = true;
     }
   }
+/* Pousser la recette vers le tableau si elle passe le filtre. */
   if (!filter) {
     sRecipes.push(r);
   } 
