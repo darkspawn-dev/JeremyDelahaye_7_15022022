@@ -1,4 +1,3 @@
-
 export class Dropdown {
   constructor(id, items, dataType, badgeContainer, filters, populateCards, color) {
     this.id = id;
