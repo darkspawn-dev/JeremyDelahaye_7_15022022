@@ -303,6 +303,7 @@ main {
   justify-content: center;
   flex-direction: column;
 }
+
 #dropdown {
   flex-direction: column;
 }
