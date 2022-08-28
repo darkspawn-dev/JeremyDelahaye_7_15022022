@@ -1,13 +1,16 @@
+/* Il crée un menu déroulant avec une barre de recherche et une liste d'éléments. Lorsqu'un élément est
+cliqué, il crée un badge avec la valeur de l'élément et l'ajoute à un conteneur. */
 export class Dropdown {
-  constructor(id, items, dataType, badgeContainer, filters, populateCards, color) {
+  constructor(id, items, dataType, badgeContainer, filters, changeCallback, title,color) {
     this.id = id;
     this.items = items;
     this.dataType = dataType;
+    this.title = title;
     this.color = color;
     this.badgeContainer = badgeContainer;
     filters[dataType] = [];
     this.filters = filters;
-    this.populateCards = populateCards;
+    this.changeCallback = changeCallback;
   }
 
 
@@ -38,7 +41,7 @@ export class Dropdown {
     button.setAttribute("class", `dropdown-filter-button ${this.colorClass()}`);
     const p = document.createElement("p");
     p.setAttribute("class", "dropdownTitle")
-    p.textContent = this.dataType;
+    p.textContent = this.title;
     button.appendChild(p);
 
     dropdown.appendChild(button);
@@ -101,11 +104,12 @@ export class Dropdown {
     }
   }
 
-  
-  /**
-   * Remplit la liste déroulante avec les éléments filtrés
-   * @param filter - Une chaîne qui sera utilisée pour filtrer les éléments dans la liste déroulante.
-   */
+
+/**
+ * Il prend une chaîne comme argument, filtre le tableau d'éléments en fonction de la chaîne, puis
+ * remplit la liste déroulante avec les éléments filtrés.
+ * @param filter - la chaîne de filtre
+ */
   populate(filter) {
     const items = this.items.filter((v) =>
       v.toLowerCase().match(filter ? filter.toLowerCase() : undefined)
@@ -122,7 +126,11 @@ export class Dropdown {
     }
   }
 
-  //addEventlistener des bouton dropdowns
+/**
+ * Lorsque l'utilisateur clique sur le bouton déroulant, le menu déroulant apparaît, et lorsque
+ * l'utilisateur clique sur le bouton de fermeture, le menu déroulant disparaît.
+ * @param dropdown - l'élément déroulant
+ */
   addEvents(dropdown) {
     const filterButton = dropdown.querySelector("div.dropdown-filter-button");
     filterButton.addEventListener("click", function () {
@@ -149,13 +157,15 @@ export class Dropdown {
       button.style.display = "inline-block";
     });
 
+/* Ajout d'un écouteur d'événement au champ de saisie. */
     const key = dropdown.querySelector("input");
     key.addEventListener("keyup", (e) => {
       this.populate(e.target.value);
       this.addEvents(this.dropdown);
     });
 
-    // addeventlistener on item
+
+/* Ajout d'un écouteur d'événement à chaque élément de la liste déroulante. */
     const selectItem = dropdown.querySelectorAll("span.filter-element");
     selectItem.forEach((item) => {
       item.addEventListener("click", (e) =>
@@ -163,6 +173,7 @@ export class Dropdown {
              );
     });
 
+/* Fermeture du menu déroulant lorsque vous cliquez sur les éléments. */
     const closeItem = dropdown.querySelector("div.dropdown-filter-content-items");
     closeItem.addEventListener("click", function (e) {
       const span = this;
@@ -171,12 +182,15 @@ export class Dropdown {
 
       const button = content.previousElementSibling;
       button.style.display = "inline-block";
+
+      let key = dropdown.querySelector("input");
+      key.value = "";
     })
   }
 
 /**
  * Créez un badge avec la valeur et la couleur, ajoutez-le au conteneur de badges, ajoutez la valeur au
- * tableau des filtres et enfin appelez la fonction populateCards
+ * tableau des filtres et enfin appelez la fonction changeCallback
  * @param value - La valeur du badge.
  */
   appendBadge(value) {
@@ -196,9 +210,20 @@ export class Dropdown {
       this.filters[this.dataType] = this.filters[this.dataType].filter(
         (i) => i !== value
       );
-      this.populateCards();
+      this.changeCallback();
     });
 
-    this.populateCards();
+    this.changeCallback();
+  }
+
+/**
+ * Cette fonction met à jour les éléments de la liste déroulante, remplit la liste déroulante avec les
+ * nouveaux éléments et ajoute les événements à la liste déroulante.
+ * @param items - Un tableau d'objets qui seront utilisés pour remplir la liste déroulante.
+ */
+  updateItems(items){
+      this.items = items
+      this.populate()
+      this.addEvents(this.dropdown);
   }
 }
